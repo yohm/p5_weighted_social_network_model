@@ -88,6 +88,9 @@ class Cluster {
   }
 
   void GA(int i) {
+    float p_ga = 0.05;
+    if( random(1.0) > p_ga ) { return; }
+
     Node ni = m_nodes.get(i);
     int j = int(random(m_nodes.size()-1));
     if( j >= i ) { j += 1; }
