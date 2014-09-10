@@ -24,7 +24,7 @@ PFont f;
 
 void setup() {
   size(640, 560);
-  f = createFont("Georgia", 12, true);
+  f = createFont("Arial", 14, true);
 
   // Initialize the physics
   physics=new VerletPhysics2D();
@@ -56,7 +56,7 @@ void draw() {
   // Instructions
   fill(0);
   textFont(f);
-  text("'p' to display or hide particles\n'c' to display or hide connections\n'n' for new graph",10,20);
+  text("Weighted Social Network model",10,20);
 }
 
 // Key press commands

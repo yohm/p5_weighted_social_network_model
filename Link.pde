@@ -25,7 +25,7 @@ class Link extends VerletSpring2D {
 
   // All we're doing really is adding a display() function to a VerletParticle
   void display() {
-    stroke(0,255,150,20);
+    stroke(0,255,150,100);
     strokeWeight(0.5*weight);
     line(n1.x, n1.y, n2.x, n2.y);
   }
