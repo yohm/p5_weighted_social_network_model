@@ -67,15 +67,5 @@ void keyPressed() {
   else if (key == 'p') {
     showParticles = showParticles ? false : true;
   }
-  else if (key == 'n') {
-    physics.clear();
-    cluster = new Cluster(int(random(20, 40)), width, height);
-  }
-  else if (key == '1') {
-    cluster.strengthenLink(1);
-  }
-  else if (key == '2') {
-    cluster.removeLink(1);
-  }
 }
 
