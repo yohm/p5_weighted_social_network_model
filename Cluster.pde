@@ -15,7 +15,7 @@ class Cluster {
   float diameter;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
-  Cluster(int n, float d, Vec2D center) {
+  Cluster(int n, Vec2D center) {
 
     // Initialize the ArrayList
     nodes = new ArrayList<Node>();
@@ -39,9 +39,9 @@ class Cluster {
       }
     }
     
-    VerletParticle2D n0 = nodes.get(0);
-    VerletParticle2D n2 = nodes.get(2);
-    VerletSpring2D s = physics.getSpring(n0, n2);
+    // VerletParticle2D n0 = nodes.get(0);
+    // VerletParticle2D n2 = nodes.get(2);
+    // VerletSpring2D s = physics.getSpring(n0, n2);
     // s.setStrength(0.001);
     // s.setRestLength(200.0);
   }

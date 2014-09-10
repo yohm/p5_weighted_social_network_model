@@ -7,6 +7,7 @@
 
 import toxi.geom.*;
 import toxi.physics2d.*;
+import toxi.physics2d.behaviors.*;
 
 // Reference to physics world
 VerletPhysics2D physics;
@@ -22,15 +23,15 @@ boolean showConnections = true;
 PFont f;
 
 void setup() {
-  size(640, 360);
+  size(640, 560);
   f = createFont("Georgia", 12, true);
 
   // Initialize the physics
   physics=new VerletPhysics2D();
-  physics.setWorldBounds(new Rect(10, 10, width-20, height-20));
 
   // Spawn a new random graph
-  cluster = new Cluster(8, 100, new Vec2D(width/2, height/2));
+  cluster = new Cluster(100, new Vec2D(width/2, height/2));
+  physics.setWorldBounds(new Rect(10, 10, width-20, height-20));
 }
 
 void draw() {
@@ -54,6 +55,7 @@ void draw() {
   fill(0);
   textFont(f);
   text("'p' to display or hide particles\n'c' to display or hide connections\n'n' for new graph",10,20);
+  println(physics.getWorldBounds());
 }
 
 // Key press commands
@@ -66,7 +68,7 @@ void keyPressed() {
   }
   else if (key == 'n') {
     physics.clear();
-    cluster = new Cluster(int(random(2, 20)), random(10, width/2), new Vec2D(width/2, height/2));
+    cluster = new Cluster(int(random(20, 40)), new Vec2D(width/2, height/2));
   }
   else if (key == '1') {
     cluster.strengthenLink(1);
