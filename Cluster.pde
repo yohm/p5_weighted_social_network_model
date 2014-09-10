@@ -57,22 +57,10 @@ class Cluster {
   void showConnections() {
     stroke(0, 150);
     strokeWeight(2);
-    println(physics.springs.size() );
 
     for( VerletSpring2D spring: physics.springs ) {
       line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
     }
-
-    /*
-    for (int i = 0; i < nodes.size()-1; i++) {
-      VerletParticle2D pi = (VerletParticle2D) nodes.get(i);
-      for (int j = i+1; j < nodes.size(); j++) {
-        VerletParticle2D pj = (VerletParticle2D) nodes.get(j);
-
-        line(pi.x, pi.y, pj.x, pj.y);
-      }
-    }
-    */
   }
 }
 
