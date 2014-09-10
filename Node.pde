@@ -11,6 +11,7 @@
 // inside the Node class, but inheritance is a nice alternative
 
 import java.util.Map;
+import java.util.Collection;
 
 class Node extends VerletParticle2D {
 
@@ -25,6 +26,10 @@ class Node extends VerletParticle2D {
 
   void addEdge(Node node, Link link) {
     m_edges.put(node, link);
+  }
+
+  Collection<Link> allLinks() {
+    return m_edges.values();
   }
 
   boolean hasEdge(Node node) {

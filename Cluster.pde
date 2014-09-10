@@ -63,13 +63,17 @@ class Cluster {
     l.strengthen(1.0);
   }
 
-  void removeLink(int link_idx) {
-    if( link_idx >= m_links.size() ) { return; }
-    Link l = m_links.get(link_idx);
+  void removeLink(Link l) {
     physics.removeSpring(l);
     l.n1.deleteEdge( l.n2 );
     l.n2.deleteEdge( l.n1 );
-    m_links.remove(link_idx);
+    m_links.remove(l);
+  }
+
+  void removeLink(int link_idx) {
+    if( link_idx >= m_links.size() ) { return; }
+    Link l = m_links.get(link_idx);
+    removeLink(l);
   }
 
   void updateNetwork() {
@@ -88,7 +92,7 @@ class Cluster {
   }
 
   void GA(int i) {
-    float p_ga = 0.05;
+    float p_ga = 0.5;
     if( random(1.0) > p_ga ) { return; }
 
     Node ni = m_nodes.get(i);
@@ -104,8 +108,14 @@ class Cluster {
   }
 
   void ND(int n) {
+    float p_nd = 0.1;
+    if( random(1.0) > p_nd ) { return; }
+
+    println("removing ", n);
     Node node = m_nodes.get(n);
-    // IMPLEMENT ME
+    for( Link l : node.allLinks() ) {
+      removeLink(l);
+    }
   }
 }
 
