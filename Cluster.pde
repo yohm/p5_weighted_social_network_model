@@ -62,5 +62,30 @@ class Cluster {
     physics.removeSpring(l);
     m_links.remove(link_idx);
   }
+
+  void updateNetwork() {
+    int r = int( random( m_nodes.size() * 3 ) );
+    int action = r % 3;
+    int target = r / 3;
+    if( action == 0 ) { LA(target);}
+    else if( action == 1 ) { GA(target); }
+    else if( action == 2 ) { ND(target); }
+    else { println("ERROR"); }
+  }
+
+  void LA(int n) {
+    Node node = m_nodes.get(n);
+    // IMPLEMENT ME
+  }
+
+  void GA(int n) {
+    Node node = m_nodes.get(n);
+    // IMPLEMENT ME
+  }
+
+  void ND(int n) {
+    Node node = m_nodes.get(n);
+    // IMPLEMENT ME
+  }
 }
 

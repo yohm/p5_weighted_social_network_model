@@ -36,6 +36,8 @@ void setup() {
 
 void draw() {
 
+  cluster.updateNetwork();
+
   // Update the physics world
   physics.update();
 
