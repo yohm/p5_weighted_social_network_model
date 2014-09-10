@@ -41,7 +41,8 @@ class Cluster {
     VerletParticle2D n0 = nodes.get(0);
     VerletParticle2D n2 = nodes.get(2);
     VerletSpring2D s = physics.getSpring(n0, n2);
-    s.setStrength(2.0);
+    // s.setStrength(0.001);
+    // s.setRestLength(200.0);
   }
 
   void display() {
@@ -56,6 +57,13 @@ class Cluster {
   void showConnections() {
     stroke(0, 150);
     strokeWeight(2);
+    println(physics.springs.size() );
+
+    for( VerletSpring2D spring: physics.springs ) {
+      line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
+    }
+
+    /*
     for (int i = 0; i < nodes.size()-1; i++) {
       VerletParticle2D pi = (VerletParticle2D) nodes.get(i);
       for (int j = i+1; j < nodes.size(); j++) {
@@ -64,6 +72,7 @@ class Cluster {
         line(pi.x, pi.y, pj.x, pj.y);
       }
     }
+    */
   }
 }
 
