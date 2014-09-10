@@ -71,5 +71,8 @@ void keyPressed() {
   else if (key == '1') {
     cluster.strengthenLink(1);
   }
+  else if (key == '2') {
+    cluster.removeLink(1);
+  }
 }
 

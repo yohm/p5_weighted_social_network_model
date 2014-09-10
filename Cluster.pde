@@ -64,5 +64,12 @@ class Cluster {
     Link l = links.get(link_idx);
     l.strengthen(1.0);
   }
+
+  void removeLink(int link_idx) {
+    if( link_idx >= links.size() ) { return; }
+    Link l = links.get(link_idx);
+    physics.removeSpring(l);
+    links.remove(link_idx);
+  }
 }
 
