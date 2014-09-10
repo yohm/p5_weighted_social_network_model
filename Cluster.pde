@@ -24,7 +24,7 @@ class Cluster {
       // We can't put them right on top of each other
       float x = random(50, width - 100);
       float y = random(50, height - 100);
-      Node node = new Node(new Vec2D(x,y));
+      Node node = new Node(i, new Vec2D(x,y));
       m_nodes.add(node);
     }
   }
@@ -46,9 +46,12 @@ class Cluster {
   void addLink(int i, int j) {
     Node ni = m_nodes.get(i);
     Node nj = m_nodes.get(j);
-    Link l = new Link(ni, nj, 1.0);
+    float init_weight = 1.0;
+    Link l = new Link(ni, nj, init_weight);
     m_links.add(l);
     physics.addSpring(l);
+    ni.addEdge(j, l);
+    nj.addEdge(i, l);
   }
 
   void strengthenLink(int link_idx) {
@@ -60,6 +63,8 @@ class Cluster {
     if( link_idx >= m_links.size() ) { return; }
     Link l = m_links.get(link_idx);
     physics.removeSpring(l);
+    l.n1.deleteEdge( l.n2.id );
+    l.n2.deleteEdge( l.n1.id );
     m_links.remove(link_idx);
   }
 
