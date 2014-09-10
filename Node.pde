@@ -15,23 +15,23 @@ import java.util.Map;
 class Node extends VerletParticle2D {
 
   int id;
-  HashMap<Integer,Link> m_edges;
+  HashMap<Node,Link> m_edges;
 
   Node(int _id, Vec2D pos) {
     super(pos);
     id = _id;
   }
 
-  void addEdge(int i, Link link) {
-    m_edges.put(i, link);
+  void addEdge(Node node, Link link) {
+    m_edges.put(node, link);
   }
 
-  boolean hasEdge(int i) {
-    return ( m_edges.get(i) != null );
+  boolean hasEdge(Node node) {
+    return ( m_edges.get(node) != null );
   }
 
-  void deleteEdge(int i) {
-    m_edges.remove(i);
+  void deleteEdge(Node node) {
+    m_edges.remove(node);
   }
 
   // All we're doing really is adding a display() function to a VerletParticle

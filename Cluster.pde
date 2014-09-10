@@ -50,8 +50,8 @@ class Cluster {
     Link l = new Link(ni, nj, init_weight);
     m_links.add(l);
     physics.addSpring(l);
-    ni.addEdge(j, l);
-    nj.addEdge(i, l);
+    ni.addEdge(nj, l);
+    nj.addEdge(ni, l);
   }
 
   void strengthenLink(int link_idx) {
@@ -63,8 +63,8 @@ class Cluster {
     if( link_idx >= m_links.size() ) { return; }
     Link l = m_links.get(link_idx);
     physics.removeSpring(l);
-    l.n1.deleteEdge( l.n2.id );
-    l.n2.deleteEdge( l.n1.id );
+    l.n1.deleteEdge( l.n2 );
+    l.n2.deleteEdge( l.n1 );
     m_links.remove(link_idx);
   }
 
