@@ -57,7 +57,6 @@ void draw() {
   fill(0);
   textFont(f);
   text("'p' to display or hide particles\n'c' to display or hide connections\n'n' for new graph",10,20);
-  println(physics.getWorldBounds());
 }
 
 // Key press commands
