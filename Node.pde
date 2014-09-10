@@ -17,11 +17,13 @@ class Node extends VerletParticle2D {
 
   int id;
   HashMap<Node,Link> m_edges;
+  int color_r;
 
   Node(int _id, Vec2D pos) {
     super(pos);
     id = _id;
     m_edges = new HashMap<Node,Link>();
+    color_r = 0;
   }
 
   void addEdge(Node node, Link link) {
@@ -40,10 +42,15 @@ class Node extends VerletParticle2D {
     m_edges.remove(node);
   }
 
+  void setColorRed() {
+    color_r = 255;
+  }
+
   // All we're doing really is adding a display() function to a VerletParticle
   void display() {
-    fill(0,150);
-    stroke(0);
+    color_r -= 1;
+    fill(color_r,0,0,150);
+    stroke(color_r,0,0);
     strokeWeight(2);
     ellipse(x,y,8,8);
   }

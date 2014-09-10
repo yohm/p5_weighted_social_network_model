@@ -116,6 +116,7 @@ class Cluster {
     for( Link l : node.allLinks() ) {
       removeLink(l);
     }
+    node.setColorRed();
   }
 }
 
