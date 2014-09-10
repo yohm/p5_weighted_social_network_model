@@ -68,5 +68,8 @@ void keyPressed() {
     physics.clear();
     cluster = new Cluster(int(random(2, 20)), random(10, width/2), new Vec2D(width/2, height/2));
   }
+  else if (key == '1') {
+    cluster.strengthenLink(1);
+  }
 }
 

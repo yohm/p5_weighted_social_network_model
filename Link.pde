@@ -13,7 +13,14 @@ class Link extends VerletSpring2D {
   }
   
   float calcStrength(float w) {
-    return 0.01 * log(w+1);
+    //    return 0.01 * log(w+1);
+    return 0.01 * w;
+  }
+
+  void strengthen(float dw) {
+    weight += dw;
+    float s = calcStrength(weight);
+    setStrength(s);
   }
 
   // All we're doing really is adding a display() function to a VerletParticle

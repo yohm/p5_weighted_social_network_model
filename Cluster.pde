@@ -59,5 +59,10 @@ class Cluster {
       l.display();
     }
   }
+
+  void strengthenLink(int link_idx) {
+    Link l = links.get(link_idx);
+    l.strengthen(1.0);
+  }
 }
 
