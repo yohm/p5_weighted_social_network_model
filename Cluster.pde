@@ -37,6 +37,11 @@ class Cluster {
         physics.addSpring(new VerletSpring2D(ni, nj, diameter, 0.01));
       }
     }
+    
+    VerletParticle2D n0 = nodes.get(0);
+    VerletParticle2D n2 = nodes.get(2);
+    VerletSpring2D s = physics.getSpring(n0, n2);
+    s.setStrength(2.0);
   }
 
   void display() {
