@@ -27,13 +27,8 @@ class Cluster {
 
     // Connect all the nodes with a Spring
     for (int i = 0; i < m_nodes.size()-1; i++) {
-      Node ni = m_nodes.get(i);
       for (int j = i+1; j < m_nodes.size(); j++) {
-        Node nj = m_nodes.get(j);
-        // A Spring needs two particles, a resting length, and a strength
-        Link l = new Link(ni, nj, 1.0);
-        m_links.add(l);
-        physics.addSpring(l);
+        addLink(i,j);
       }
     }
   }
@@ -50,6 +45,14 @@ class Cluster {
     for( Link l: m_links ) {
       l.display();
     }
+  }
+
+  void addLink(int i, int j) {
+    Node ni = m_nodes.get(i);
+    Node nj = m_nodes.get(j);
+    Link l = new Link(ni, nj, 1.0);
+    m_links.add(l);
+    physics.addSpring(l);
   }
 
   void strengthenLink(int link_idx) {
