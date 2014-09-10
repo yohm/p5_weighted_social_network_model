@@ -60,10 +60,10 @@ void draw() {
 void keyPressed() {
   if (key == 'c') {
     showConnections = showConnections ? false : true;
-  } 
+  }
   else if (key == 'p') {
     showParticles = showParticles ? false : true;
-  } 
+  }
   else if (key == 'n') {
     physics.clear();
     cluster = new Cluster(int(random(2, 20)), random(10, width/2), new Vec2D(width/2, height/2));
