@@ -20,6 +20,7 @@ class Node extends VerletParticle2D {
   Node(int _id, Vec2D pos) {
     super(pos);
     id = _id;
+    m_edges = new HashMap<Node,Link>();
   }
 
   void addEdge(Node node, Link link) {
@@ -27,7 +28,7 @@ class Node extends VerletParticle2D {
   }
 
   boolean hasEdge(Node node) {
-    return ( m_edges.get(node) != null );
+    return ( m_edges.get(node) != null ) ? true : false;
   }
 
   void deleteEdge(Node node) {
