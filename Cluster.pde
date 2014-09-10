@@ -46,13 +46,12 @@ class Cluster {
     // s.setRestLength(200.0);
   }
 
-  void display() {
-    // Show all the nodes
-    for (Node n : nodes) {
-      n.display();
-    }
+  // Draw all nodes
+  void showNodes() {
+   for( Node n : nodes ) {
+    n.display();
+   }
   }
-
 
   // Draw all the internal connections
   void showConnections() {

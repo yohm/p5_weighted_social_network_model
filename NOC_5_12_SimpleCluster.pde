@@ -42,7 +42,7 @@ void draw() {
 
   // Display all points
   if (showParticles) {
-    cluster.display();
+    cluster.showNodes();
   }
 
   // If we want to see the physics
