@@ -43,15 +43,19 @@ class Cluster {
     }
   }
 
-  void addLink(int i, int j) {
-    Node ni = m_nodes.get(i);
-    Node nj = m_nodes.get(j);
+  void addLink(Node ni, Node nj) {
     float init_weight = 1.0;
     Link l = new Link(ni, nj, init_weight);
     m_links.add(l);
     physics.addSpring(l);
     ni.addEdge(nj, l);
     nj.addEdge(ni, l);
+  }
+
+  void addLink(int i, int j) {
+    Node ni = m_nodes.get(i);
+    Node nj = m_nodes.get(j);
+    addLink(ni, nj);
   }
 
   void strengthenLink(int link_idx) {
@@ -83,9 +87,17 @@ class Cluster {
     // IMPLEMENT ME
   }
 
-  void GA(int n) {
-    Node node = m_nodes.get(n);
-    // IMPLEMENT ME
+  void GA(int i) {
+    Node ni = m_nodes.get(i);
+    int j = int(random(m_nodes.size()-1));
+    if( j >= i ) { j += 1; }
+    Node nj = m_nodes.get(j);
+    if( ! ni.hasEdge(nj) ) {
+      addLink(ni, nj);
+    }
+    else {
+      println(i, j, " already has edge");
+    }
   }
 
   void ND(int n) {
