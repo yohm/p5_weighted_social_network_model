@@ -30,7 +30,7 @@ void setup() {
   physics=new VerletPhysics2D();
 
   // Spawn a new random graph
-  cluster = new Cluster(100, new Vec2D(width/2, height/2));
+  cluster = new Cluster(100, width, height);
   physics.setWorldBounds(new Rect(10, 10, width-20, height-20));
 }
 
@@ -68,7 +68,7 @@ void keyPressed() {
   }
   else if (key == 'n') {
     physics.clear();
-    cluster = new Cluster(int(random(20, 40)), new Vec2D(width/2, height/2));
+    cluster = new Cluster(int(random(20, 40)), width, height);
   }
   else if (key == '1') {
     cluster.strengthenLink(1);

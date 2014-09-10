@@ -13,7 +13,7 @@ class Cluster {
   ArrayList<Link> m_links;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
-  Cluster(int n, Vec2D center) {
+  Cluster(int n, float width, float height) {
 
     // Initialize the ArrayList
     m_nodes = new ArrayList<Node>();
@@ -22,22 +22,18 @@ class Cluster {
     // Create the nodes
     for (int i = 0; i < n; i++) {
       // We can't put them right on top of each other
-      m_nodes.add(new Node(center.add(Vec2D.randomVector())));
-    }
-
-    // Connect all the nodes with a Spring
-    for (int i = 0; i < m_nodes.size()-1; i++) {
-      for (int j = i+1; j < m_nodes.size(); j++) {
-        addLink(i,j);
-      }
+      float x = random(50, width - 100);
+      float y = random(50, height - 100);
+      Node node = new Node(new Vec2D(x,y));
+      m_nodes.add(node);
     }
   }
 
   // Draw all nodes
   void showNodes() {
-   for( Node n : m_nodes ) {
-    n.display();
-   }
+    for( Node n : m_nodes ) {
+      n.display();
+    }
   }
 
   // Draw all the internal connections
