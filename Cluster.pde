@@ -102,7 +102,7 @@ class Cluster {
     Node nj = m_nodes.get(j);
     if( ! ni.hasEdge(nj) ) {
       Link l = addLink(ni, nj);
-      l.setNewBornColor();
+      l.setFresh();
     }
     else {
       println(i, j, " already has edge");
