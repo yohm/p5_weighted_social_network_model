@@ -10,6 +10,7 @@ class Cluster {
 
   // A cluster is a grouping of nodes
   ArrayList<Node> nodes;
+  ArrayList<Link> links;
 
   float diameter;
 
@@ -18,9 +19,7 @@ class Cluster {
 
     // Initialize the ArrayList
     nodes = new ArrayList<Node>();
-
-    // Set the diameter
-    diameter = d;
+    links = new ArrayList<Link>();
 
     // Create the nodes
     for (int i = 0; i < n; i++) {
@@ -30,11 +29,13 @@ class Cluster {
 
     // Connect all the nodes with a Spring
     for (int i = 0; i < nodes.size()-1; i++) {
-      VerletParticle2D ni = nodes.get(i);
+      Node ni = nodes.get(i);
       for (int j = i+1; j < nodes.size(); j++) {
-        VerletParticle2D nj = nodes.get(j);
+        Node nj = nodes.get(j);
         // A Spring needs two particles, a resting length, and a strength
-        physics.addSpring(new VerletSpring2D(ni, nj, diameter, 0.01));
+        Link l = new Link(ni, nj, 1.0);
+        links.add(l);
+        physics.addSpring(l);
       }
     }
     
@@ -55,11 +56,8 @@ class Cluster {
 
   // Draw all the internal connections
   void showConnections() {
-    stroke(0, 150);
-    strokeWeight(2);
-
-    for( VerletSpring2D spring: physics.springs ) {
-      line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
+    for( Link l: links ) {
+      l.display();
     }
   }
 }
