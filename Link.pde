@@ -24,4 +24,3 @@ class Link extends VerletSpring2D {
   }
 }
 
-

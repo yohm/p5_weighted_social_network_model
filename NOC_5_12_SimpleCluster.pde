@@ -15,8 +15,8 @@ VerletPhysics2D physics;
 Cluster cluster;
 
 // Boolean that indicates whether we draw connections or not
-boolean showPhysics = true;
 boolean showParticles = true;
+boolean showConnections = true;
 
 // Font
 PFont f;
@@ -46,7 +46,7 @@ void draw() {
   }
 
   // If we want to see the physics
-  if (showPhysics) {
+  if (showConnections) {
     cluster.showConnections();
   }
 
@@ -59,12 +59,10 @@ void draw() {
 // Key press commands
 void keyPressed() {
   if (key == 'c') {
-    showPhysics = !showPhysics;
-    if (!showPhysics) showParticles = true;
+    showConnections = showConnections ? false : true;
   } 
   else if (key == 'p') {
-    showParticles = !showParticles;
-    if (!showParticles) showPhysics = true;
+    showParticles = showParticles ? false : true;
   } 
   else if (key == 'n') {
     physics.clear();
