@@ -16,9 +16,9 @@ class Link extends VerletSpring2D {
     setStrength( calcStrength() );
     setRestLength( calcRestLength() );
 
-    original_color = color(0,255,150,200);
-    ga_fresh_color = color(155,155,0,200);
-    la_fresh_color = color(255,0,255,200);
+    original_color = color(0,255,150,255);
+    ga_fresh_color = color(155,155,0,255);
+    la_fresh_color = color(255,0,255,255);
     freshness = 0.0;
     ga_or_la = true;
   }
@@ -29,7 +29,8 @@ class Link extends VerletSpring2D {
   }
 
   float calcRestLength() {
-    return 100.0 / log(weight+1);
+    // return 100.0 / log(weight+1);
+    return 30.0;
   }
 
   void strengthen(float dw) {
@@ -52,7 +53,7 @@ class Link extends VerletSpring2D {
     color fresh_color = ga_or_la ? ga_fresh_color : la_fresh_color;
     color current_color = lerpColor(original_color, fresh_color, freshness); 
     stroke(current_color);
-    strokeWeight(1.5*log(weight+1.0));
+    strokeWeight(0.2*log(weight+1.0));
     // strokeWeight(0.5*weight);
     line(n1.x, n1.y, n2.x, n2.y);
   }

@@ -109,7 +109,7 @@ class Cluster {
   }
 
   void LA(int n) {
-    float p_la = 0.2;
+    float p_la = 0.05;
     Node ni = m_nodes.get(n);
 
     Link l_ij = ni.edgeSelection(null);
@@ -135,7 +135,7 @@ class Cluster {
   }
 
   void GA(int i) {
-    float p_ga = 0.1;
+    float p_ga = 0.0005;
     Node ni = m_nodes.get(i);
     if( ni.degree() > 1 && random(1.0) > p_ga ) { return; }
 
@@ -152,7 +152,7 @@ class Cluster {
   }
 
   void ND(int n) {
-    float p_nd = 0.1;
+    float p_nd = 0.001;
     if( random(1.0) > p_nd ) { return; }
 
     println("removing ", n);
