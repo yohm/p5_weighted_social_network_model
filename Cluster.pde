@@ -162,7 +162,7 @@ class Cluster {
     if( random(1.0) > p_nd ) { return; }
 
     removeLinksOfNode(ni);
-    ni.setColorRed();
+    ni.setNewBornColor();
   }
 }
 

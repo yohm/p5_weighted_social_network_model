@@ -16,13 +16,17 @@ import java.util.Collection;
 class Node extends VerletParticle2D {
   int id;
   HashMap<Integer,Link> m_edges;
-  int color_r;
+  float freshness;
+  color original_color;
+  color newborn_color;
 
   Node(int _id, Vec2D pos) {
     super(pos);
     id = _id;
     m_edges = new HashMap<Integer,Link>();
-    color_r = 0;
+    freshness = 0.0;
+    original_color = color(0,0,0);
+    newborn_color = color(255,0,0);
   }
 
   void addEdge(Node node, Link link) {
@@ -76,19 +80,19 @@ class Node extends VerletParticle2D {
     return ret;
   }
 
-  void setColorRed() {
-    color_r = 255;
+  void setNewBornColor() {
+    freshness = 1.0;
   }
 
   void aging() {
-    color_r -= 1;
+    freshness -= 0.01;
   }
 
   // All we're doing really is adding a display() function to a VerletParticle
   void display() {
-    color_r -= 1;
-    fill(color_r,0,0,150);
-    stroke(color_r,0,0);
+    color current_color = lerpColor(original_color, newborn_color, freshness);
+    fill(current_color,150);
+    stroke(current_color);
     strokeWeight(2);
     ellipse(x,y,4,4);
   }
