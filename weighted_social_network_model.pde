@@ -24,15 +24,15 @@ boolean writing = false;
 PFont f;
 
 void setup() {
-  size(640, 560);
-  f = createFont("Arial", 14, true);
+  size(800, 600);
+  f = createFont("Arial", 18, true);
 
   // Initialize the physics
   physics=new VerletPhysics2D();
 
   // Spawn a new random graph
   cluster = new Cluster(300, width, height);
-  physics.setWorldBounds(new Rect(10,10,width-20,height-20));
+  physics.setWorldBounds(new Rect(100,100,width-200,height-200));
 }
 
 void draw() {
@@ -62,7 +62,7 @@ void draw() {
   // Instructions
   fill(0);
   textFont(f);
-  text("Weighted Social Network model",10,20);
+  text("t = " + String.valueOf(frameCount/3),10,20);
 }
 
 // Key press commands
