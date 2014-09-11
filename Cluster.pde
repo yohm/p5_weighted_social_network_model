@@ -11,6 +11,7 @@ class Cluster {
   // A cluster is a grouping of nodes
   ArrayList<Node> m_nodes;
   ArrayList<Link> m_links;
+  int time_step;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
   Cluster(int n, float width, float height) {
@@ -18,6 +19,7 @@ class Cluster {
     // Initialize the ArrayList
     m_nodes = new ArrayList<Node>();
     m_links = new ArrayList<Link>();
+    time_step = 0;
 
     // Create the nodes
     for (int i = 0; i < n; i++) {
@@ -92,9 +94,10 @@ class Cluster {
   }
 
   void updateNetwork() {
-    int r = int( random( m_nodes.size() * 3 ) );
-    int action = r % 3;
-    int target = r / 3;
+    int num_nodes = m_nodes.size();
+    // int r = int( random( m_nodes.size() * 3 ) );
+    int action = (time_step/num_nodes) % 3;
+    int target = time_step % num_nodes;
     if( action == 0 ) { LA(target);}
     else if( action == 1 ) { GA(target); }
     else if( action == 2 ) { ND(target); }
@@ -102,6 +105,7 @@ class Cluster {
 
     for( Node n : m_nodes ) { n.aging(); }
     for( Link l : m_links ) { l.aging(); }
+    time_step += 1;
   }
 
   void LA(int n) {
