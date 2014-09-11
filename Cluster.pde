@@ -88,8 +88,25 @@ class Cluster {
   }
 
   void LA(int n) {
-    Node node = m_nodes.get(n);
-    // IMPLEMENT ME
+    Node ni = m_nodes.get(n);
+
+    Link l_ij = ni.edgeSelection(null);
+    if( l_ij == null ) { return; }
+    l_ij.strengthen(1.0);
+
+    Node nj = (l_ij.n1 == ni) ? l_ij.n2 : l_ij.n1;
+    Link l_jk = nj.edgeSelection(ni);
+    if( l_jk == null ) { return; }
+    l_jk.strengthen(1.0);
+
+    Node nk = (l_jk.n1 == nj) ? l_jk.n2 : l_jk.n1;
+    Link l_ik = ni.getLinkTo(nk);
+    if( l_ik == null ) {
+      if( random(1.0) < 0.05 ) { addLink(ni, nk); }
+    }
+    else {
+      l_ik.strengthen(1.0);
+    }
   }
 
   void GA(int i) {

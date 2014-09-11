@@ -38,6 +38,10 @@ class Node extends VerletParticle2D {
     return ( m_edges.get(node) != null ) ? true : false;
   }
 
+  Link getLinkTo(Node node) {
+    return m_edges.get(node);
+  }
+
   void deleteEdge(Node node) {
     m_edges.remove(node);
   }
@@ -46,13 +50,24 @@ class Node extends VerletParticle2D {
     return m_edges.size();
   }
 
-  Link edgeSelection() {
+  Link edgeSelection(Node node) {
     float w_sum = 0.0;
-    for( Link link : m_edges.values() ) { w_sum += link.weight; }
+    if( node == null && degree() == 0 ) { return null; }
+    if( node != null && degree() < 1 ) { return null; }
 
+    for( Node n : m_edges.keySet() ) {
+      if( n == node ) { continue; }
+      println(n, node, m_edges);
+      Link l = m_edges.get(n);
+      println(l);
+      w_sum += l.weight;
+      // w_sum += m_edges.get(n).weight;
+    }
     float r = random(w_sum);
     Link ret = null;
-    for( Link link : m_edges.values() ) {
+    for( Node n : m_edges.keySet() ) {
+      if( n == node ) { continue; }
+      Link link = m_edges.get(n);
       r -= link.weight;
       if( r <= 0.0 ) { ret = link; break; }
     }
