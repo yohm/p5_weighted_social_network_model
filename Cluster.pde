@@ -38,7 +38,7 @@ class Cluster {
   }
 
   void attachRepulsionSpring(Node ni, Node nj) {
-    VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,50.0,0.01);
+    VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,50.0,0.1);
     physics.addSpring(repulsion);
   }
 
@@ -132,9 +132,9 @@ class Cluster {
 
   void GA(int i) {
     float p_ga = 0.1;
-    if( random(1.0) > p_ga ) { return; }
-
     Node ni = m_nodes.get(i);
+    if( ni.degree() > 1 && random(1.0) > p_ga ) { return; }
+
     int j = int(random(m_nodes.size()-1));
     if( j >= i ) { j += 1; }
     Node nj = m_nodes.get(j);
