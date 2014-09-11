@@ -38,7 +38,7 @@ class Cluster {
   }
 
   void attachRepulsionSpring(Node ni, Node nj) {
-    VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,20,0.01);
+    VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,50.0,0.01);
     physics.addSpring(repulsion);
   }
 

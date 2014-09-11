@@ -13,8 +13,8 @@ class Link extends VerletSpring2D {
     n1 = _n1;
     n2 = _n2;
     weight = _weight;
-    float s = calcStrength(weight);
-    setStrength(s);
+    setStrength( calcStrength() );
+    setRestLength( calcRestLength() );
 
     original_color = color(0,255,150,200);
     ga_fresh_color = color(155,155,0,200);
@@ -23,15 +23,19 @@ class Link extends VerletSpring2D {
     ga_or_la = true;
   }
   
-  float calcStrength(float w) {
-    return 0.01 * log(w+1);
+  float calcStrength() {
+    return 0.01 * log(weight+1);
     // return 0.001 * w;
+  }
+
+  float calcRestLength() {
+    return 100.0 / log(weight+1);
   }
 
   void strengthen(float dw) {
     weight += dw;
-    float s = calcStrength(weight);
-    setStrength(s);
+    setStrength( calcStrength() );
+    setRestLength( calcRestLength() );
   }
 
   void setFresh(boolean _ga_or_la) {
