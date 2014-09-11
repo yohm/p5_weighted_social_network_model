@@ -27,6 +27,19 @@ class Cluster {
       Node node = new Node(i, new Vec2D(x,y));
       m_nodes.add(node);
     }
+    
+    for( int i=0; i < n; i++) {
+      Node ni = m_nodes.get(i);
+      for( int j=0; j < n; j++) {
+        Node nj = m_nodes.get(j);
+        attachRepulsionSpring(ni,nj);
+      }
+    }
+  }
+
+  void attachRepulsionSpring(Node ni, Node nj) {
+    VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,20,0.01);
+    physics.addSpring(repulsion);
   }
 
   // Draw all nodes
@@ -44,6 +57,9 @@ class Cluster {
   }
 
   Link addLink(Node ni, Node nj) {
+    VerletSpring2D s = physics.getSpring(ni,nj);
+    if( s != null ) { physics.removeSpring(s); }
+
     float init_weight = 1.0;
     Link l = new Link(ni, nj, init_weight);
     m_links.add(l);
@@ -66,10 +82,11 @@ class Cluster {
 
   void removeLinksOfNode(Node node) {
     for( Link l : node.allLinks() ) {
-      physics.removeSpring(l);
       Node pair = ( l.n1.id == node.id ) ? l.n2 : l.n1;
       pair.deleteEdge(node);
       m_links.remove(l);
+      physics.removeSpring(l);
+      attachRepulsionSpring(node,pair);
     }
     node.clearEdge();
   }
@@ -85,6 +102,7 @@ class Cluster {
   }
 
   void LA(int n) {
+    float p_la = 0.2;
     Node ni = m_nodes.get(n);
 
     Link l_ij = ni.edgeSelection(null);
@@ -99,7 +117,7 @@ class Cluster {
     Node nk = (l_jk.n1 == nj) ? l_jk.n2 : l_jk.n1;
     Link l_ik = ni.getLinkTo(nk);
     if( l_ik == null ) {
-      if( random(1.0) < 0.1 ) { addLink(ni, nk); }
+      if( random(1.0) < p_la ) { addLink(ni, nk); }
     }
     else {
       l_ik.strengthen(1.0);
@@ -107,7 +125,7 @@ class Cluster {
   }
 
   void GA(int i) {
-    float p_ga = 0.005;
+    float p_ga = 0.1;
     if( random(1.0) > p_ga ) { return; }
 
     Node ni = m_nodes.get(i);
@@ -124,7 +142,7 @@ class Cluster {
   }
 
   void ND(int n) {
-    float p_nd = 0.01;
+    float p_nd = 0.1;
     if( random(1.0) > p_nd ) { return; }
 
     println("removing ", n);

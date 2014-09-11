@@ -7,7 +7,7 @@ class Link extends VerletSpring2D {
   float freshness;
   
   Link(Node _n1, Node _n2, float _weight) {
-    super(_n1, _n2, 100.0, 0.01);
+    super(_n1, _n2, 30.0, 0.01);
     n1 = _n1;
     n2 = _n2;
     weight = _weight;

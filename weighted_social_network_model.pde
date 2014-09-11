@@ -31,7 +31,7 @@ void setup() {
 
   // Spawn a new random graph
   cluster = new Cluster(200, width, height);
-  physics.setWorldBounds(new Rect(10, 10, width-20, height-20));
+  physics.setWorldBounds(new Rect(10,10,width-20,height-20));
 }
 
 void draw() {
