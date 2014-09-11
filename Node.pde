@@ -14,20 +14,19 @@ import java.util.Map;
 import java.util.Collection;
 
 class Node extends VerletParticle2D {
-
   int id;
-  HashMap<Node,Link> m_edges;
+  HashMap<Integer,Link> m_edges;
   int color_r;
 
   Node(int _id, Vec2D pos) {
     super(pos);
     id = _id;
-    m_edges = new HashMap<Node,Link>();
+    m_edges = new HashMap<Integer,Link>();
     color_r = 0;
   }
 
   void addEdge(Node node, Link link) {
-    m_edges.put(node, link);
+    m_edges.put(node.id, link);
   }
 
   Collection<Link> allLinks() {
@@ -35,15 +34,15 @@ class Node extends VerletParticle2D {
   }
 
   boolean hasEdge(Node node) {
-    return ( m_edges.get(node) != null ) ? true : false;
+    return ( m_edges.get(node.id) != null ) ? true : false;
   }
 
   Link getLinkTo(Node node) {
-    return m_edges.get(node);
+    return m_edges.get(node.id);
   }
 
   void deleteEdge(Node node) {
-    m_edges.remove(node);
+    m_edges.remove(node.id);
   }
 
   int degree() {
@@ -55,19 +54,15 @@ class Node extends VerletParticle2D {
     if( node == null && degree() == 0 ) { return null; }
     if( node != null && degree() < 1 ) { return null; }
 
-    for( Node n : m_edges.keySet() ) {
-      if( n == node ) { continue; }
-      println(n, node, m_edges);
-      Link l = m_edges.get(n);
-      println(l);
-      w_sum += l.weight;
-      // w_sum += m_edges.get(n).weight;
+    for( int nid : m_edges.keySet() ) {
+      if( node != null && nid == node.id ) { continue; }
+      w_sum += m_edges.get(nid).weight;
     }
     float r = random(w_sum);
     Link ret = null;
-    for( Node n : m_edges.keySet() ) {
-      if( n == node ) { continue; }
-      Link link = m_edges.get(n);
+    for( int nid : m_edges.keySet() ) {
+      if( node != null && nid == node.id ) { continue; }
+      Link link = m_edges.get(nid);
       r -= link.weight;
       if( r <= 0.0 ) { ret = link; break; }
     }
