@@ -120,7 +120,10 @@ class Cluster {
     Node nk = (l_jk.n1 == nj) ? l_jk.n2 : l_jk.n1;
     Link l_ik = ni.getLinkTo(nk);
     if( l_ik == null ) {
-      if( random(1.0) < p_la ) { addLink(ni, nk); }
+      if( random(1.0) < p_la ) {
+        Link l = addLink(ni, nk);
+        l.setFresh(false);
+      }
     }
     else {
       l_ik.strengthen(1.0);
@@ -137,7 +140,7 @@ class Cluster {
     Node nj = m_nodes.get(j);
     if( ! ni.hasEdge(nj) ) {
       Link l = addLink(ni, nj);
-      l.setFresh();
+      l.setFresh(true);
     }
     else {
       println(i, j, " already has edge");
