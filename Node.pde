@@ -42,6 +42,23 @@ class Node extends VerletParticle2D {
     m_edges.remove(node);
   }
 
+  int degree() {
+    return m_edges.size();
+  }
+
+  Link edgeSelection() {
+    float w_sum = 0.0;
+    for( Link link : m_edges.values() ) { w_sum += link.weight; }
+
+    float r = random(w_sum);
+    Link ret = null;
+    for( Link link : m_edges.values() ) {
+      r -= link.weight;
+      if( r <= 0.0 ) { ret = link; break; }
+    }
+    return ret;
+  }
+
   void setColorRed() {
     color_r = 255;
   }
