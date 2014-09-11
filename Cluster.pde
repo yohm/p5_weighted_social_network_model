@@ -99,6 +99,9 @@ class Cluster {
     else if( action == 1 ) { GA(target); }
     else if( action == 2 ) { ND(target); }
     else { println("ERROR"); }
+
+    for( Node n : m_nodes ) { n.aging(); }
+    for( Link l : m_links ) { l.aging(); }
   }
 
   void LA(int n) {

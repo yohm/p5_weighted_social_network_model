@@ -34,9 +34,12 @@ class Link extends VerletSpring2D {
     freshness = 1.0;
   }
 
+  void aging() {
+    freshness -= 0.01;
+  }
+
   // All we're doing really is adding a display() function to a VerletParticle
   void display() {
-    freshness -= 0.01;
     color current_color = lerpColor(original_color, fresh_color, freshness); 
     stroke(current_color);
     strokeWeight(0.5*log(weight+1.0));
