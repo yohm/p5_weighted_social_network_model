@@ -54,18 +54,21 @@ class Node extends VerletParticle2D {
   }
 
   Link edgeSelection(Node node) {
-    float w_sum = 0.0;
     if( node == null && degree() == 0 ) { return null; }
     if( node != null && degree() < 1 ) { return null; }
 
+    float w_sum = 0.0;
+    int id_to_skip = (node != null) ? node.id : -1;
     for( int nid : m_edges.keySet() ) {
-      if( node != null && nid == node.id ) { continue; }
+      // if( node != null && nid == node.id ) { continue; }
+      if( nid == id_to_skip ) { continue; }
       w_sum += m_edges.get(nid).weight;
     }
     float r = random(w_sum);
     Link ret = null;
     for( int nid : m_edges.keySet() ) {
-      if( node != null && nid == node.id ) { continue; }
+      // if( node != null && nid == node.id ) { continue; }
+      if( nid == id_to_skip ) { continue; }
       Link link = m_edges.get(nid);
       r -= link.weight;
       if( r <= 0.0 ) { ret = link; break; }

@@ -118,14 +118,15 @@ class Cluster {
   void LA(int n) {
     float p_la = 0.05;
     Node ni = m_nodes.get(n);
-
+    if( ni.degree() == 0 ) { return; }
     Link l_ij = ni.edgeSelection(null);
-    if( l_ij == null ) { return; }
+    if( l_ij == null ) { println("must not happen"); throw new RuntimeException("foo"); }
     l_ij.strengthen(1.0);
 
     Node nj = (l_ij.n1.id == ni.id) ? l_ij.n2 : l_ij.n1;
+    if( nj.degree() == 1 ) { return; }
     Link l_jk = nj.edgeSelection(ni);
-    if( l_jk == null ) { return; }
+    if( l_jk == null ) { println("must not happen"); throw new RuntimeException("foo"); }
     l_jk.strengthen(1.0);
 
     Node nk = (l_jk.n1.id == nj.id) ? l_jk.n2 : l_jk.n1;
@@ -144,8 +145,7 @@ class Cluster {
   void GA(int i) {
     float p_ga = 0.0005;
     Node ni = m_nodes.get(i);
-    if( ni.degree() > 1 && random(1.0) > p_ga ) { return; }
-
+    if( ni.degree() > 0 && random(1.0) > p_ga ) { return; }
     int j = int(random(m_nodes.size()-1));
     if( j >= i ) { j += 1; }
     Node nj = m_nodes.get(j);
