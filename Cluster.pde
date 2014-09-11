@@ -99,7 +99,7 @@ class Cluster {
     Node nk = (l_jk.n1 == nj) ? l_jk.n2 : l_jk.n1;
     Link l_ik = ni.getLinkTo(nk);
     if( l_ik == null ) {
-      if( random(1.0) < 0.05 ) { addLink(ni, nk); }
+      if( random(1.0) < 0.1 ) { addLink(ni, nk); }
     }
     else {
       l_ik.strengthen(1.0);
@@ -107,7 +107,7 @@ class Cluster {
   }
 
   void GA(int i) {
-    float p_ga = 0.5;
+    float p_ga = 0.005;
     if( random(1.0) > p_ga ) { return; }
 
     Node ni = m_nodes.get(i);
@@ -124,7 +124,7 @@ class Cluster {
   }
 
   void ND(int n) {
-    float p_nd = 0.1;
+    float p_nd = 0.01;
     if( random(1.0) > p_nd ) { return; }
 
     println("removing ", n);
