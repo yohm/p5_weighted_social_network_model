@@ -45,7 +45,7 @@ class Link extends VerletSpring2D {
   }
 
   void aging() {
-    freshness -= 0.001;
+    freshness -= 0.02;
   }
 
   // All we're doing really is adding a display() function to a VerletParticle

@@ -101,23 +101,25 @@ class Cluster {
 
   void updateNetwork() {
     int num_nodes = m_nodes.size();
-    // int r = int( random( m_nodes.size() * 3 ) );
-    int action = (time_step/num_nodes) % 3;
-    int target = time_step % num_nodes;
-    if( action == 0 ) { LA(target);}
-    else if( action == 1 ) { GA(target); }
-    else if( action == 2 ) { ND(target); }
-    else { println("ERROR"); }
 
-    for( Node n : m_nodes ) { n.aging(); }
-    for( Link l : m_links ) { l.aging(); }
+    int action = time_step % 3;
+    for( Node node : m_nodes ) {
+      if( action == 0 ) { LA(node);}
+      else if( action == 1 ) { GA(node); }
+      else if( action == 2 ) { ND(node); }
+    }
+
+    if( time_step % 1 == 0 ) {
+      for( Node n : m_nodes ) { n.aging(); }
+      for( Link l : m_links ) { l.aging(); }
+    }
     time_step += 1;
-    println(m_links.size());
+    println(time_step);
   }
 
-  void LA(int n) {
+  void LA(Node ni) {
     float p_la = 0.05;
-    Node ni = m_nodes.get(n);
+
     if( ni.degree() == 0 ) { return; }
     Link l_ij = ni.edgeSelection(null);
     if( l_ij == null ) { println("must not happen"); throw new RuntimeException("foo"); }
@@ -142,30 +144,25 @@ class Cluster {
     }
   }
 
-  void GA(int i) {
+  void GA(Node ni) {
     float p_ga = 0.0005;
-    Node ni = m_nodes.get(i);
+
     if( ni.degree() > 0 && random(1.0) > p_ga ) { return; }
     int j = int(random(m_nodes.size()-1));
-    if( j >= i ) { j += 1; }
+    if( j >= ni.id ) { j += 1; }
     Node nj = m_nodes.get(j);
     if( ! ni.hasEdge(nj) ) {
       Link l = addLink(ni, nj);
       l.setFresh(true);
     }
-    else {
-      println(i, j, " already has edge");
-    }
   }
 
-  void ND(int n) {
+  void ND(Node ni) {
     float p_nd = 0.001;
     if( random(1.0) > p_nd ) { return; }
 
-    println("removing ", n);
-    Node node = m_nodes.get(n);
-    removeLinksOfNode(node);
-    node.setColorRed();
+    removeLinksOfNode(ni);
+    ni.setColorRed();
   }
 }
 

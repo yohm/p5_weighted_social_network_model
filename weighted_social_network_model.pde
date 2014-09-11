@@ -36,9 +36,7 @@ void setup() {
 }
 
 void draw() {
-  for(int i=0; i < 300; i++) {
-    cluster.updateNetwork();
-  }
+  cluster.updateNetwork();
 
   // Update the physics world
   physics.update();
