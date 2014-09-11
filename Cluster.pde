@@ -58,6 +58,12 @@ class Cluster {
     }
   }
 
+  void Print(PrintWriter writer) {
+    for( Link l : m_links ) {
+      writer.println(String.valueOf(l.n1.id) + " " + String.valueOf(l.n2.id) + " " + String.valueOf(l.weight));
+    }
+  }
+
   Link addLink(Node ni, Node nj) {
     VerletSpring2D s = physics.getSpring(ni,nj);
     if( s != null ) { physics.removeSpring(s); }

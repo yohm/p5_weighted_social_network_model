@@ -18,6 +18,7 @@ Cluster cluster;
 // Boolean that indicates whether we draw connections or not
 boolean showParticles = true;
 boolean showConnections = true;
+boolean writing = false;
 
 // Font
 PFont f;
@@ -35,8 +36,9 @@ void setup() {
 }
 
 void draw() {
-
-  cluster.updateNetwork();
+  for(int i=0; i < 300; i++) {
+    cluster.updateNetwork();
+  }
 
   // Update the physics world
   physics.update();
@@ -52,6 +54,12 @@ void draw() {
   if (showConnections) {
     cluster.showConnections();
   }
+  
+  if( writing ) {
+    PrintWriter writer = createWriter("net_proc.edg");
+    cluster.Print(writer);
+    writing = false;
+  }
 
   // Instructions
   fill(0);
@@ -66,6 +74,9 @@ void keyPressed() {
   }
   else if (key == 'p') {
     showParticles = showParticles ? false : true;
+  }
+  else if (key == 'o') {
+    writing = true;
   }
 }
 
