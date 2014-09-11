@@ -33,6 +33,7 @@ void setup() {
   // Spawn a new random graph
   cluster = new Cluster(300, width, height);
   physics.setWorldBounds(new Rect(100,100,width-200,height-200));
+  
 }
 
 void draw() {
@@ -62,7 +63,12 @@ void draw() {
   // Instructions
   fill(0);
   textFont(f);
-  text("t = " + String.valueOf(frameCount/3),10,20);
+  String time = String.valueOf(frameCount/3);
+  text("t = " + time,10,20);
+  
+  if( frameCount % 3 == 0 ) {
+    saveFrame("frame-"+time+".tif");
+  }
 }
 
 // Key press commands
