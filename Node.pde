@@ -45,6 +45,10 @@ class Node extends VerletParticle2D {
     m_edges.remove(node.id);
   }
 
+  void clearEdge() {
+    m_edges.clear();
+  }
+
   int degree() {
     return m_edges.size();
   }

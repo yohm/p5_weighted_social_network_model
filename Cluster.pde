@@ -64,17 +64,14 @@ class Cluster {
     l.strengthen(1.0);
   }
 
-  void removeLink(Link l) {
-    physics.removeSpring(l);
-    l.n1.deleteEdge( l.n2 );
-    l.n2.deleteEdge( l.n1 );
-    m_links.remove(l);
-  }
-
-  void removeLink(int link_idx) {
-    if( link_idx >= m_links.size() ) { return; }
-    Link l = m_links.get(link_idx);
-    removeLink(l);
+  void removeLinksOfNode(Node node) {
+    for( Link l : node.allLinks() ) {
+      physics.removeSpring(l);
+      Node pair = ( l.n1.id == node.id ) ? l.n2 : l.n1;
+      pair.deleteEdge(node);
+      m_links.remove(l);
+    }
+    node.clearEdge();
   }
 
   void updateNetwork() {
@@ -132,9 +129,7 @@ class Cluster {
 
     println("removing ", n);
     Node node = m_nodes.get(n);
-    for( Link l : node.allLinks() ) {
-      removeLink(l);
-    }
+    removeLinksOfNode(node);
     node.setColorRed();
   }
 }
