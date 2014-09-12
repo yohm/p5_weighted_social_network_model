@@ -1,29 +1,23 @@
-# README #
+## visualizing Weighted Social Network model
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This application visualizes a time evolution of social network formation using a weighted social network model.
+The simulation is based on the model proposed by Kumpula et al. (http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.99.228701)
 
-### What is this repository for? ###
+You'll see how community structures are developed.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## How to run
 
-### How do I get set up? ###
+- First of all, you need [processing](http://processing.org/).
+- The code depends on [toxiclibs](http://toxiclibs.org/).
+  - Download toxiclibs from the website, and copy to the library directory for processing.
+    - For Mac, put the library to `~/Documents/Processing/libraries`.
+- Open `weighted_social_network_model.pde` in processing, and run it.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+## License
 
-### Contribution guidelines ###
+All of the source code is licensed under the GNU Lesser General Public License.
+http://www.gnu.org/licenses/lgpl-2.1.html
 
-* Writing tests
-* Code review
-* Other guidelines
+This code is developing based on Shiffman's code. I thank him for making such interesting examples.
+His original code is on [github](https://github.com/shiffman/The-Nature-of-Code-Examples).
 
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
