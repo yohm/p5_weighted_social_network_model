@@ -66,9 +66,9 @@ void draw() {
   String time = String.valueOf(frameCount/3);
   text("t = " + time,10,20);
   
-  if( frameCount % 3 == 0 ) {
-    saveFrame("frame-"+time+".tif");
-  }
+  //if( frameCount % 3 == 0 ) {
+    //saveFrame("frames/####.tif");
+  //}
 }
 
 // Key press commands

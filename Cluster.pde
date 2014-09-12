@@ -114,7 +114,6 @@ class Cluster {
       for( Link l : m_links ) { l.aging(); }
     }
     time_step += 1;
-    println(time_step);
   }
 
   void LA(Node ni) {
