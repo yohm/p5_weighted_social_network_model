@@ -45,7 +45,7 @@ void draw() {
   // Update the physics world
   physics.update();
 
-  background(255);
+  background(40);
 
   // Display all points
   if (showParticles) {
@@ -70,7 +70,7 @@ void draw() {
   }
 
   // Print
-  fill(0);
+  fill(255,20,255);
   textFont(f);
   String time = String.valueOf(frameCount/3);
   text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC,10,20);

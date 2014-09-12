@@ -17,8 +17,8 @@ class Link extends VerletSpring2D {
     setRestLength( calcRestLength() );
 
     original_color = color(0,255,128,255);
-    ga_fresh_color = color(128,128,0,255);
-    la_fresh_color = color(255,0,255,255);
+    ga_fresh_color = color(255,255,0,255);
+    la_fresh_color = color(255,128,255,255);
     freshness = 0.0;
     ga_or_la = true;
   }

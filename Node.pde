@@ -26,7 +26,7 @@ class Node extends VerletParticle2D {
     id = _id;
     m_edges = new HashMap<Integer,Link>();
     freshness = 0.0;
-    original_color = color(0,0,0);
+    original_color = color(255,255,255);
     newborn_color = color(255,0,0);
   }
 
