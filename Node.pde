@@ -10,6 +10,7 @@
 // We could have just stored a reference to a VerletParticle object
 // inside the Node class, but inheritance is a nice alternative
 
+import java.util.Set;
 import java.util.Map;
 import java.util.Collection;
 

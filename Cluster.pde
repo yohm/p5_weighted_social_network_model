@@ -163,5 +163,31 @@ class Cluster {
     removeLinksOfNode(ni);
     ni.setNewBornColor();
   }
+
+  float calcAverageDegree() {
+    return 2.0 * float(m_links.size()) / m_nodes.size();
+  }
+
+  float calcCC() {
+    float sum = 0.0;
+    for( Node n : m_nodes ) {
+      sum += calcLocalCC(n);
+    }
+    return sum / m_nodes.size();
+  }
+  float calcLocalCC(Node n) {
+    int k = n.degree();
+    if( k <= 1 ) { return 0.0; }
+    float connected = 0.0;
+    Set<Integer> neighbors = n.m_edges.keySet();
+    for( int i : neighbors ) {
+      for( int j : neighbors ) {
+        if( i < j ) continue;
+        connected += m_nodes.get(i).hasEdge(m_nodes.get(j)) ? 1.0 : 0.0;
+      }
+    }
+    float localCC = connected * 2.0 / (k*(k-1));
+    return localCC;
+  }
 }
 

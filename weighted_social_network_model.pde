@@ -23,6 +23,9 @@ boolean writing = false;
 // Font
 PFont f;
 
+float g_averageDegree = 0.0;
+float g_CC = 0.0;
+
 void setup() {
   size(800, 600);
   f = createFont("Arial", 18, true);
@@ -60,12 +63,18 @@ void draw() {
     writing = false;
   }
 
-  // Instructions
+  // calculate Stylized facts
+  if( frameCount % 9 == 0 ) {
+    g_averageDegree = cluster.calcAverageDegree();
+    g_CC = cluster.calcCC();
+  }
+
+  // Print
   fill(0);
   textFont(f);
   String time = String.valueOf(frameCount/3);
-  text("t = " + time,10,20);
-  
+  text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC,10,20);
+
   //if( frameCount % 3 == 0 ) {
     //saveFrame("frames/####.tif");
   //}
