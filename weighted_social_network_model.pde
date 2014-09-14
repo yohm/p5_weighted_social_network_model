@@ -29,6 +29,7 @@ PFont f;
 
 float g_averageDegree = 0.0;
 float g_CC = 0.0;
+float g_averageWeight = 0.0;
 
 void setup() {
   size(800, 600);
@@ -71,13 +72,14 @@ void draw() {
   if( frameCount % 9 == 0 ) {
     g_averageDegree = cluster.calcAverageDegree();
     g_CC = cluster.calcCC();
+    g_averageWeight = cluster.calcAverageWeight();
   }
 
   // Print
   fill(255,120,255);
   textFont(f);
   String time = String.valueOf(frameCount/3);
-  text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC,10,20);
+  text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC + "\n<w> = " + g_averageWeight,10,20);
 
   //if( frameCount % 3 == 0 ) {
     //saveFrame("frames/####.tif");

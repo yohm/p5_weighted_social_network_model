@@ -181,5 +181,11 @@ class Cluster {
     float localCC = connected * 2.0 / (k*(k-1));
     return localCC;
   }
+
+  float calcAverageWeight() {
+    float sum = 0.0;
+    for( Link l : m_links ) { sum += l.weight; }
+    return sum / m_links.size();
+  }
 }
 
