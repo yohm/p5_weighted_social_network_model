@@ -1,7 +1,11 @@
+// Simulation based on Weighted Social Network model
+//   proposed by Kumpula et al. PRL 99, 228701 (2007)
+// Yohsuke Murase
+//
+// The code is based on
 // The Nature of Code
 // Daniel Shiffman
 // http://natureofcode.com
-
 // Force directed graph,
 // heavily based on: http://code.google.com/p/fidgen/
 

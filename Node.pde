@@ -1,15 +1,3 @@
-// The Nature of Code
-// <http://www.shiffman.net/teaching/nature>
-// Spring 2010
-// Toxiclibs example: http://toxiclibs.org/
-
-// Force directed graph
-// Heavily based on: http://code.google.com/p/fidgen/
-
-// Notice how we are using inheritance here!
-// We could have just stored a reference to a VerletParticle object
-// inside the Node class, but inheritance is a nice alternative
-
 import java.util.Set;
 import java.util.Map;
 import java.util.Collection;
