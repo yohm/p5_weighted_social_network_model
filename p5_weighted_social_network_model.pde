@@ -23,6 +23,8 @@ Cluster cluster;
 boolean showParticles = true;
 boolean showConnections = true;
 boolean writing = false;
+boolean stopped = false;
+int showingLink = -1;
 
 // Font
 PFont f;
@@ -45,8 +47,10 @@ void setup() {
 }
 
 void draw() {
-  for( int i=0; i < 30; i++ ) {
-    cluster.updateNetwork();
+  if(!stopped) {
+    for( int i=0; i < 30; i++ ) {
+      cluster.updateNetwork();
+    }
   }
 
   // Update the physics world
@@ -57,13 +61,10 @@ void draw() {
   background(0);
 
   // Display all points
-  if (showParticles) {
-    cluster.showNodes();
-  }
-
-  // If we want to see the physics
-  if (showConnections) {
-    cluster.showConnections();
+  if( showingLink >= 0 ) {
+    cluster.showOne(showingLink);
+  } else {
+    cluster.showAll();
   }
   
   if( writing ) {
@@ -92,14 +93,20 @@ void draw() {
 
 // Key press commands
 void keyPressed() {
-  if (key == 'c') {
-    showConnections = showConnections ? false : true;
-  }
-  else if (key == 'p') {
-    showParticles = showParticles ? false : true;
-  }
-  else if (key == 'o') {
+  if (key == 'o') {
     writing = true;
+  }
+  else if (key == 's') {
+    stopped = !stopped;
+  }
+  else if( key == 'j') {
+    showingLink++;
+  }
+  else if( key == 'k') {
+    showingLink--;
+  }
+  else if ( key == 'u' ) {
+    showingLink = -showingLink;
   }
 }
 

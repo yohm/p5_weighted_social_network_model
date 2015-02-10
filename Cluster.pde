@@ -35,6 +35,24 @@ class Cluster {
     VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,50.0,0.1);
     physics.addSpring(repulsion);
   }
+  
+  void showAll() {
+    showNodes();
+    showConnections();
+  }
+  
+  void showOne(int link_idx) {
+    Link l = m_links.get(link_idx);
+    l.n1.display();
+    l.n2.display();
+    l.display();
+    for( Link neighbor : l.n1.allLinks() ) {
+      neighbor.display();
+    }
+    for( Link neighbor : l.n2.allLinks() ) {
+      neighbor.display();
+    }
+  }
 
   // Draw all nodes
   void showNodes() {
@@ -112,7 +130,7 @@ class Cluster {
     // Aging
     ArrayList<Link> linksToRemove = new ArrayList<Link>();
     for( Link l : m_links ) {
-      l.Aging(0.999);
+      l.Aging(0.99);
       if( l.weight < 0.01 ) {
         removeLink(l);
         linksToRemove.add(l);

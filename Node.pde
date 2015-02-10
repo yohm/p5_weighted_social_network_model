@@ -54,6 +54,7 @@ class Node extends VerletParticle2D {
       w_sum += m_edges.get(nid).weight;
     }
     float r = random(w_sum);
+    float org_r = r;
     Link ret = null;
     for( int nid : m_edges.keySet() ) {
       // if( node != null && nid == node.id ) { continue; }
@@ -61,6 +62,11 @@ class Node extends VerletParticle2D {
       Link link = m_edges.get(nid);
       r -= link.weight;
       if( r <= 0.0 ) { ret = link; break; }
+    }
+    if( ret == null ) {
+      println(r);
+      println(org_r);
+      throw new RuntimeException("bar");
     }
     return ret;
   }
