@@ -45,10 +45,14 @@ void setup() {
 }
 
 void draw() {
-  cluster.updateNetwork();
+  for( int i=0; i < 30; i++ ) {
+    cluster.updateNetwork();
+  }
 
   // Update the physics world
-  physics.update();
+  for( int i=0; i < 1; i++ ) {
+    physics.update();
+  }
 
   background(0);
 
@@ -78,7 +82,7 @@ void draw() {
   // Print
   fill(255,120,255);
   textFont(f);
-  String time = String.valueOf(frameCount/3);
+  String time = String.valueOf( cluster.time_step ); // frameCount/3);
   text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC + "\n<w> = " + g_averageWeight,10,20);
 
   //if( frameCount % 3 == 0 ) {

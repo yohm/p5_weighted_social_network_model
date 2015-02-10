@@ -3,10 +3,6 @@ class Link extends VerletSpring2D {
   Node n1, n2;
   float weight;
   color original_color;
-  color ga_fresh_color;
-  color la_fresh_color;
-  float freshness;
-  boolean ga_or_la;  // true: GA, false: LA
   
   Link(Node _n1, Node _n2, float _weight) {
     super(_n1, _n2, 30.0, 0.01);
@@ -17,10 +13,6 @@ class Link extends VerletSpring2D {
     setRestLength( calcRestLength() );
 
     original_color = color(0,255,128,255);
-    ga_fresh_color = color(255,255,0,255);
-    la_fresh_color = color(255,128,255,255);
-    freshness = 0.0;
-    ga_or_la = true;
   }
   
   float calcStrength() {
@@ -38,6 +30,11 @@ class Link extends VerletSpring2D {
     setStrength( calcStrength() );
     setRestLength( calcRestLength() );
   }
+  
+  void Aging(float f) {
+    weight = weight * f;
+  }
+      
 
   // All we're doing really is adding a display() function to a VerletParticle
   void display() {

@@ -90,21 +90,38 @@ class Cluster {
     }
     node.clearEdge();
   }
+  
+  void removeLink(Link l) {
+    Node n1 = l.n1;
+    Node n2 = l.n2;
+    n1.deleteEdge(n2);
+    n2.deleteEdge(n1);
+    // m_links.remove(l);
+    physics.removeSpring(l);
+    attachRepulsionSpring(n1,n2);
+  }
 
   void updateNetwork() {
     int num_nodes = m_nodes.size();
 
-    int action = time_step % 3;
     for( Node node : m_nodes ) {
-      if( action == 0 ) { LA(node);}
-      else if( action == 1 ) { GA(node); }
-      else if( action == 2 ) { ND(node); }
+      LA(node);
+      GA(node);
     }
-
-    if( time_step % 1 == 0 ) {
-      for( Node n : m_nodes ) { /*n.aging();*/ }
-      for( Link l : m_links ) { /*l.aging();*/ }
+    
+    // Aging
+    ArrayList<Link> linksToRemove = new ArrayList<Link>();
+    for( Link l : m_links ) {
+      l.Aging(0.999);
+      if( l.weight < 0.01 ) {
+        removeLink(l);
+        linksToRemove.add(l);
+      }
     }
+    for( Link l : linksToRemove ) {
+      m_links.remove(l);
+    }
+    
     time_step += 1;
   }
 
