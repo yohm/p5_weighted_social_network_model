@@ -102,8 +102,8 @@ class Cluster {
     }
 
     if( time_step % 1 == 0 ) {
-      for( Node n : m_nodes ) { n.aging(); }
-      for( Link l : m_links ) { l.aging(); }
+      for( Node n : m_nodes ) { /*n.aging();*/ }
+      for( Link l : m_links ) { /*l.aging();*/ }
     }
     time_step += 1;
   }
@@ -127,7 +127,6 @@ class Cluster {
     if( l_ik == null ) {
       if( random(1.0) < p_la ) {
         Link l = addLink(ni, nk);
-        l.setFresh(false);
       }
     }
     else {
@@ -144,16 +143,14 @@ class Cluster {
     Node nj = m_nodes.get(j);
     if( ! ni.hasEdge(nj) ) {
       Link l = addLink(ni, nj);
-      l.setFresh(true);
     }
   }
-
+  
   void ND(Node ni) {
     float p_nd = 0.001;
     if( random(1.0) > p_nd ) { return; }
 
     removeLinksOfNode(ni);
-    ni.setNewBornColor();
   }
 
   float calcAverageDegree() {

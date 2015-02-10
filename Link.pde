@@ -39,19 +39,9 @@ class Link extends VerletSpring2D {
     setRestLength( calcRestLength() );
   }
 
-  void setFresh(boolean _ga_or_la) {
-    freshness = 1.0;
-    ga_or_la = _ga_or_la;
-  }
-
-  void aging() {
-    freshness -= 0.01;
-  }
-
   // All we're doing really is adding a display() function to a VerletParticle
   void display() {
-    color fresh_color = ga_or_la ? ga_fresh_color : la_fresh_color;
-    color current_color = lerpColor(original_color, fresh_color, freshness); 
+    color current_color = original_color; 
     stroke(current_color);
     strokeWeight(0.2*log(weight+1.0));
     // strokeWeight(0.5*weight);
