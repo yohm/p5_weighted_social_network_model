@@ -45,12 +45,18 @@ class Cluster {
     Link l = m_links.get(link_idx);
     l.n1.display();
     l.n2.display();
-    l.display();
+    l.display( color(0,255,255) );
     for( Link neighbor : l.n1.allLinks() ) {
-      neighbor.display();
+      if( neighbor == l ) { continue; }
+      Node n3 = ( neighbor.n1 == l.n1 ) ? neighbor.n2 : neighbor.n1;
+      color c = ( n3.hasEdge( l.n2 ) ) ? color(255,0,255) : color(0,255,0);
+      neighbor.display(c);
     }
     for( Link neighbor : l.n2.allLinks() ) {
-      neighbor.display();
+      if( neighbor == l ) { continue; }
+      Node n3 = (neighbor.n1 == l.n2 ) ? neighbor.n2 : neighbor.n1;
+      color c = ( n3.hasEdge( l.n1 ) ) ? color(255,0,255) : color(0,255,0);
+      neighbor.display(c);
     }
   }
 

@@ -61,12 +61,8 @@ class Node extends VerletParticle2D {
       if( nid == id_to_skip ) { continue; }
       Link link = m_edges.get(nid);
       r -= link.weight;
-      if( r <= 0.0 ) { ret = link; break; }
-    }
-    if( ret == null ) {
-      println(r);
-      println(org_r);
-      throw new RuntimeException("bar");
+      ret = link;
+      if( r <= 0.0 ) { break; }
     }
     return ret;
   }
