@@ -4,6 +4,11 @@ class Cluster {
   ArrayList<Node> m_nodes;
   ArrayList<Link> m_links;
   int time_step;
+  
+  float p_la = 0.05;
+  float p_ga = 0.0005;
+  float aging = 0.99;
+  float w_th = 0.01;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
   Cluster(int n, float width, float height) {
@@ -136,8 +141,8 @@ class Cluster {
     // Aging
     ArrayList<Link> linksToRemove = new ArrayList<Link>();
     for( Link l : m_links ) {
-      l.Aging(0.99);
-      if( l.weight < 0.01 ) {
+      l.Aging(aging);
+      if( l.weight < w_th ) {
         removeLink(l);
         linksToRemove.add(l);
       }
@@ -150,7 +155,6 @@ class Cluster {
   }
 
   void LA(Node ni) {
-    float p_la = 0.05;
 
     if( ni.degree() == 0 ) { return; }
     Link l_ij = ni.edgeSelection(null);
@@ -176,8 +180,6 @@ class Cluster {
   }
 
   void GA(Node ni) {
-    float p_ga = 0.0005;
-
     if( ni.degree() > 0 && random(1.0) > p_ga ) { return; }
     int j = int(random(m_nodes.size()-1));
     if( j >= ni.id ) { j += 1; }
