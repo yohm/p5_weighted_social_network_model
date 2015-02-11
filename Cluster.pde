@@ -7,7 +7,7 @@ class Cluster {
   
   float p_la = 0.05;
   float p_ga = 0.0005;
-  float aging = 0.99;
+  float aging = 0.9;
   float w_th = 0.01;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
@@ -46,23 +46,46 @@ class Cluster {
     showConnections();
   }
   
+  boolean isCommonNeighbor(Node n, Node n1, Node n2) {
+    return (n.hasEdge(n1) && n.hasEdge(n2));
+  }
+  
   void showOne(int link_idx) {
     Link l = m_links.get(link_idx);
     l.n1.display();
     l.n2.display();
     l.display( color(0,255,255) );
+    int n_candidates = 0;
+    int n_overlapping = 0;
     for( Link neighbor : l.n1.allLinks() ) {
       if( neighbor == l ) { continue; }
       Node n3 = ( neighbor.n1 == l.n1 ) ? neighbor.n2 : neighbor.n1;
-      color c = ( n3.hasEdge( l.n2 ) ) ? color(255,0,255) : color(0,255,0);
+      color c = color(0,255,0);
+      n_candidates++;
+      if( isCommonNeighbor( n3, l.n1, l.n2 ) ) {
+        c = color(255,0,255);
+        n_overlapping++;
+      }
       neighbor.display(c);
     }
     for( Link neighbor : l.n2.allLinks() ) {
       if( neighbor == l ) { continue; }
       Node n3 = (neighbor.n1 == l.n2 ) ? neighbor.n2 : neighbor.n1;
-      color c = ( n3.hasEdge( l.n1 ) ) ? color(255,0,255) : color(0,255,0);
+      color c = color(0,255,0);
+      n_candidates++;
+      if( isCommonNeighbor(n3, l.n1, l.n2) ) {
+        c = color(255,0,255);
+      }
       neighbor.display(c);
     }
+    
+    float o_ij = float(n_overlapping)/(n_candidates-n_overlapping);
+    printOverlap(l.weight, o_ij);
+  }
+  
+  void printOverlap(float w, float o_ij) {
+    String w_str = String.valueOf( w );
+    text("w = " + w + "\nO_ij = " + o_ij,10,400);
   }
 
   // Draw all nodes
