@@ -57,14 +57,18 @@ class Cluster {
     l.display( color(0,255,255) );
     int n_candidates = 0;
     int n_overlapping = 0;
+    float total_weight = 0.0;
+    float overlapping_weight = 0.0;
     for( Link neighbor : l.n1.allLinks() ) {
       if( neighbor == l ) { continue; }
       Node n3 = ( neighbor.n1 == l.n1 ) ? neighbor.n2 : neighbor.n1;
       color c = color(0,255,0);
       n_candidates++;
+      total_weight += neighbor.weight;
       if( isCommonNeighbor( n3, l.n1, l.n2 ) ) {
         c = color(255,0,255);
         n_overlapping++;
+        overlapping_weight += neighbor.weight;
       }
       neighbor.display(c);
     }
@@ -73,19 +77,21 @@ class Cluster {
       Node n3 = (neighbor.n1 == l.n2 ) ? neighbor.n2 : neighbor.n1;
       color c = color(0,255,0);
       n_candidates++;
+      total_weight += neighbor.weight;
       if( isCommonNeighbor(n3, l.n1, l.n2) ) {
         c = color(255,0,255);
+        overlapping_weight += neighbor.weight;
       }
       neighbor.display(c);
     }
     
     float o_ij = float(n_overlapping)/(n_candidates-n_overlapping);
-    printOverlap(l.weight, o_ij);
+    float weight_overlap = overlapping_weight / total_weight;
+    printOverlap(l.weight, o_ij, weight_overlap);
   }
   
-  void printOverlap(float w, float o_ij) {
-    String w_str = String.valueOf( w );
-    text("w = " + w + "\nO_ij = " + o_ij,10,400);
+  void printOverlap(float w, float o_ij, float weight_o) {
+    text("w = " + w + "\nO_ij = " + o_ij + "\nO_w = " + weight_o,10,400);
   }
 
   // Draw all nodes
