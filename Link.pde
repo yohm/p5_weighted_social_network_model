@@ -15,7 +15,7 @@ class Link extends VerletSpring2D {
   }
   
   float calcStrength() {
-    return 0.01 * log(weight+1);
+    return 0.005 * log(weight+1);
     // return 0.001 * w;
   }
 
@@ -41,7 +41,7 @@ class Link extends VerletSpring2D {
   // All we're doing really is adding a display() function to a VerletParticle
   void display( color current_color ) {
     stroke(current_color);
-    strokeWeight(0.4*log(weight+1.0));
+    strokeWeight(0.2*log(weight+1.0));
     // strokeWeight(0.5*weight);
     line(n1.x, n1.y, n2.x, n2.y);
   }

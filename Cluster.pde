@@ -6,8 +6,8 @@ class Cluster {
   int time_step;
   
   float p_la = 0.05;
-  float p_ga = 0.0005;
-  float aging = 0.9;
+  float p_ga = 0.005;
+  float aging = 0.99;
   float w_th = 0.01;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
