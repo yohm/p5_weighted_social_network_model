@@ -54,7 +54,7 @@ void draw() {
   }
 
   // Update the physics world
-  for( int i=0; i < 1; i++ ) {
+  for( int i=0; i < 3; i++ ) {
     physics.update();
   }
 
@@ -86,9 +86,9 @@ void draw() {
   String time = String.valueOf( cluster.time_step ); // frameCount/3);
   text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC + "\n<w> = " + g_averageWeight,10,20);
 
-  //if( frameCount % 3 == 0 ) {
-    //saveFrame("frames/####.tif");
-  //}
+  if( frameCount % 10 == 0 ) {
+    saveFrame("frames/####.tif");
+  }
 }
 
 // Key press commands
@@ -101,12 +101,18 @@ void keyPressed() {
   }
   else if( key == 'j') {
     showingLink++;
+    if( showingLink >= cluster.m_links.size() ) {
+      showingLink = 0;
+    }
   }
   else if( key == 'k') {
     showingLink--;
   }
   else if ( key == 'u' ) {
     showingLink = -showingLink;
+  }
+  else if (key == 'w') {
+    showingLink = cluster.m_links.size() - 10; 
   }
 }
 
