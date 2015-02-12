@@ -10,7 +10,7 @@ class Cluster {
   boolean aging_or_nd = false;
   float aging = 0.99;
   float w_th = 0.01;
-  float p_nd = 0.001;
+  float p_nd = 0.0001;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
   Cluster(int n, float width, float height) {
@@ -164,18 +164,14 @@ class Cluster {
   void updateNetwork() {
     int num_nodes = m_nodes.size();
 
-    for( Node node : m_nodes ) {
-      LA(node);
-      GA(node);
-    }
+    for( Node node : m_nodes ) { LA(node); }
+    for( Node node : m_nodes ) { GA(node); }
     
     if( aging_or_nd ) {
       Aging();
     }
     else {
-      for( Node node : m_nodes ) {
-        ND(node);
-      }
+      for( Node node : m_nodes ) { ND(node); }
     }
     
     time_step += 1;
