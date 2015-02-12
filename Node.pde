@@ -71,8 +71,8 @@ class Node extends VerletParticle2D {
   void display() {
     fill(original_color,150);
     stroke(original_color);
-    strokeWeight(2);
-    ellipse(x,y,4,4);
+    strokeWeight(1);
+    ellipse(x,y,2,2);
   }
 }
 

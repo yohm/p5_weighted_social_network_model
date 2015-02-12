@@ -35,11 +35,28 @@ class Link extends VerletSpring2D {
   }
 
   void display() {
-    display( color(0,255,0) );
+    // display( color(0,255,0) );
+    display( calcColor() );
+  }
+
+  color calcColor() {
+    color min = color(64, 64, 192);
+    color mid = color(255, 255, 255);
+    color max = color(192, 32, 32);
+    if( weight < 20.0 ) {
+      float w = (weight - 0.0) / (20.0 - 0.0);
+      // float w = (log(weight) - log(0.01))/(log(10.0) - log(0.01));
+      return lerpColor(min,mid,w);
+    }
+    else {
+      float w = (weight - 20.0) / (40.0-20.0);
+      return lerpColor(mid,max,w);
+    }
   }
 
   // All we're doing really is adding a display() function to a VerletParticle
   void display( color current_color ) {
+    if( weight < 1.0 ) return;
     stroke(current_color);
     strokeWeight(0.2*log(weight+1.0));
     // strokeWeight(0.5*weight);
