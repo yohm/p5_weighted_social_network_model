@@ -64,6 +64,7 @@ class Node extends VerletParticle2D {
       ret = link;
       if( r <= 0.0 ) { break; }
     }
+    if( r > 0.0 ) { throw new RuntimeException("bar"); }
     return ret;
   }
 
