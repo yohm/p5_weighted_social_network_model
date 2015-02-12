@@ -47,14 +47,12 @@ void setup() {
 }
 
 void draw() {
-  if(!stopped) {
-    for( int i=0; i < 10; i++ ) {
-      cluster.updateNetwork();
+  for( int f=0; f < 1; f++) {
+    if(!stopped) {
+      for( int i=0; i < 1; i++ ) {
+        cluster.updateNetwork();
+      }
     }
-  }
-
-  // Update the physics world
-  for( int i=0; i < 1; i++ ) {
     physics.update();
   }
 

@@ -21,7 +21,7 @@ class Link extends VerletSpring2D {
 
   float calcRestLength() {
     // return 100.0 / log(weight+1);
-    return 50.0;
+    return 30.0;
   }
 
   void strengthen(float dw) {

@@ -10,7 +10,7 @@ class Cluster {
   boolean aging_or_nd = false;
   float aging = 0.99;
   float w_th = 0.01;
-  float p_nd = 0.0001;
+  float p_nd = 0.001;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
   Cluster(int n, float width, float height) {
