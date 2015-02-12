@@ -48,13 +48,13 @@ void setup() {
 
 void draw() {
   if(!stopped) {
-    for( int i=0; i < 30; i++ ) {
+    for( int i=0; i < 10; i++ ) {
       cluster.updateNetwork();
     }
   }
 
   // Update the physics world
-  for( int i=0; i < 3; i++ ) {
+  for( int i=0; i < 1; i++ ) {
     physics.update();
   }
 

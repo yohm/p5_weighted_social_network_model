@@ -7,8 +7,10 @@ class Cluster {
   
   float p_la = 0.05;
   float p_ga = 0.005;
+  boolean aging_or_nd = false;
   float aging = 0.99;
   float w_th = 0.01;
+  float p_nd = 0.001;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
   Cluster(int n, float width, float height) {
@@ -167,6 +169,19 @@ class Cluster {
       GA(node);
     }
     
+    if( aging_or_nd ) {
+      Aging();
+    }
+    else {
+      for( Node node : m_nodes ) {
+        ND(node);
+      }
+    }
+    
+    time_step += 1;
+  }
+  
+  void Aging() {
     // Aging
     ArrayList<Link> linksToRemove = new ArrayList<Link>();
     for( Link l : m_links ) {
@@ -179,8 +194,6 @@ class Cluster {
     for( Link l : linksToRemove ) {
       m_links.remove(l);
     }
-    
-    time_step += 1;
   }
 
   void LA(Node ni) {
@@ -219,7 +232,6 @@ class Cluster {
   }
   
   void ND(Node ni) {
-    float p_nd = 0.001;
     if( random(1.0) > p_nd ) { return; }
 
     removeLinksOfNode(ni);
