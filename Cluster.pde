@@ -6,11 +6,12 @@ class Cluster {
   int time_step;
   
   float p_la = 0.05;
-  float p_ga = 0.005;
-  boolean aging_or_nd = true;
+  float p_ga = 0.0005;
+  int deletion_type = 2;  // 0: node deletion, 1: aging, 2: link deletion
+  float p_nd = 0.001;
   float aging = 0.99;
   float w_th = 0.01;
-  float p_nd = 0.001;
+  float p_ld = 0.001;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
   Cluster(int n, float width, float height) {
@@ -167,11 +168,14 @@ class Cluster {
     for( Node node : m_nodes ) { LA(node); }
     for( Node node : m_nodes ) { GA(node); }
     
-    if( aging_or_nd ) {
+    if( deletion_type == 0 ) {
+      for( Node node : m_nodes ) { ND(node); }
+    }
+    else if( deletion_type == 1 ) {
       Aging();
     }
-    else {
-      for( Node node : m_nodes ) { ND(node); }
+    else if( deletion_type == 2 ) {
+      LinkDeletion();
     }
     
     time_step += 1;
@@ -183,6 +187,19 @@ class Cluster {
     for( Link l : m_links ) {
       l.Aging(aging);
       if( l.weight < w_th ) {
+        removeLink(l);
+        linksToRemove.add(l);
+      }
+    }
+    for( Link l : linksToRemove ) {
+      m_links.remove(l);
+    }
+  }
+  
+  void LinkDeletion() {
+    ArrayList<Link> linksToRemove = new ArrayList<Link>();
+    for( Link l : m_links ) {
+      if( random(1.0) < p_ld ) {
         removeLink(l);
         linksToRemove.add(l);
       }

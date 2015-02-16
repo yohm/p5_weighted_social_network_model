@@ -47,7 +47,7 @@ void setup() {
 }
 
 void draw() {
-  for( int f=0; f < 5; f++) {
+  for( int f=0; f < 10; f++) {
     if(!stopped) {
       for( int i=0; i < 2; i++ ) {
         cluster.updateNetwork();

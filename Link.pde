@@ -15,7 +15,7 @@ class Link extends VerletSpring2D {
   }
   
   float calcStrength() {
-    return 0.005 * log(weight+1);
+    return 0.001 * log(weight+1);
     // return 0.001 * w;
   }
 
@@ -43,7 +43,7 @@ class Link extends VerletSpring2D {
     color min = color(64, 64, 192);
     color mid = color(255, 255, 255);
     color max = color(192, 32, 32);
-    float w_mid = 100.0;
+    float w_mid = 200.0;
     if( weight < w_mid ) {
       float w = (weight - 0.0) / (w_mid - 0.0);
       // float w = (log(weight) - log(0.01))/(log(10.0) - log(0.01));
