@@ -7,7 +7,7 @@ class Cluster {
   
   float p_la = 0.05;
   float p_ga = 0.005;
-  boolean aging_or_nd = false;
+  boolean aging_or_nd = true;
   float aging = 0.99;
   float w_th = 0.01;
   float p_nd = 0.001;

@@ -47,9 +47,9 @@ void setup() {
 }
 
 void draw() {
-  for( int f=0; f < 1; f++) {
+  for( int f=0; f < 5; f++) {
     if(!stopped) {
-      for( int i=0; i < 1; i++ ) {
+      for( int i=0; i < 2; i++ ) {
         cluster.updateNetwork();
       }
     }
@@ -84,9 +84,7 @@ void draw() {
   String time = String.valueOf( cluster.time_step ); // frameCount/3);
   text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC + "\n<w> = " + g_averageWeight,10,20);
 
-  if( frameCount % 10 == 0 ) {
-    saveFrame("frames/####.tif");
-  }
+  // saveFrame("frames/####.tif");
 }
 
 // Key press commands

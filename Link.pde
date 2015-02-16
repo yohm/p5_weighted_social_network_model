@@ -43,13 +43,14 @@ class Link extends VerletSpring2D {
     color min = color(64, 64, 192);
     color mid = color(255, 255, 255);
     color max = color(192, 32, 32);
-    if( weight < 20.0 ) {
-      float w = (weight - 0.0) / (20.0 - 0.0);
+    float w_mid = 100.0;
+    if( weight < w_mid ) {
+      float w = (weight - 0.0) / (w_mid - 0.0);
       // float w = (log(weight) - log(0.01))/(log(10.0) - log(0.01));
       return lerpColor(min,mid,w);
     }
     else {
-      float w = (weight - 20.0) / (40.0-20.0);
+      float w = (weight - w_mid) / ( 2*w_mid - w_mid);
       return lerpColor(mid,max,w);
     }
   }
