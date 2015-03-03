@@ -3,11 +3,11 @@ class Link extends VerletSpring2D {
   Node n1, n2;
   float weight;
   
-  Link(Node _n1, Node _n2, float _weight) {
-    super(_n1, _n2, 30.0, 0.01);
+  Link(Node _n1, Node _n2, Parameters param) {
+    super(_n1, _n2, param.attractive_l, param.attractive_f);
     n1 = _n1;
     n2 = _n2;
-    weight = _weight;
+    weight = param.init_weight;
     setStrength( calcStrength() );
     setRestLength( calcRestLength() );
 

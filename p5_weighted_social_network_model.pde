@@ -18,7 +18,6 @@ VerletPhysics2D physics;
 
 // A list of cluster objects
 Cluster cluster;
-Parameters param;
 
 // Boolean that indicates whether we draw connections or not
 boolean showParticles = true;
@@ -43,8 +42,7 @@ void setup() {
   physics=new VerletPhysics2D();
 
   // Spawn a new random graph
-  param = new Parameters();
-  cluster = new Cluster(param, width, height);
+  cluster = new Cluster(width, height);
   physics.setWorldBounds(new Rect(100,100,width-200,height-200));
   
 }

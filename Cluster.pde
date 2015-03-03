@@ -7,8 +7,8 @@ class Cluster {
   Parameters m_param;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
-  Cluster(Parameters param, float width, float height) {
-    m_param = param;
+  Cluster(float width, float height) {
+    m_param = new Parameters();
 
     // Initialize the ArrayList
     m_nodes = new ArrayList<Node>();
@@ -34,7 +34,7 @@ class Cluster {
   }
 
   void attachRepulsionSpring(Node ni, Node nj) {
-    VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,50.0,0.1);
+    VerletMinDistanceSpring2D repulsion = new VerletMinDistanceSpring2D(ni,nj,m_param.repulsive_l,m_param.repulsive_f);
     physics.addSpring(repulsion);
   }
   
@@ -116,7 +116,7 @@ class Cluster {
     if( s != null ) { physics.removeSpring(s); }
 
     float init_weight = 1.0;
-    Link l = new Link(ni, nj, init_weight);
+    Link l = new Link(ni, nj, m_param);
     m_links.add(l);
     physics.addSpring(l);
     ni.addEdge(nj, l);
