@@ -4,17 +4,11 @@ class Cluster {
   ArrayList<Node> m_nodes;
   ArrayList<Link> m_links;
   int time_step;
-  
-  float p_la = 0.05;
-  float p_ga = 0.0005;
-  int deletion_type = 2;  // 0: node deletion, 1: aging, 2: link deletion
-  float p_nd = 0.001;
-  float aging = 0.99;
-  float w_th = 0.01;
-  float p_ld = 0.001;
+  Parameters m_param;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
-  Cluster(int n, float width, float height) {
+  Cluster(Parameters param, float width, float height) {
+    m_param = param;
 
     // Initialize the ArrayList
     m_nodes = new ArrayList<Node>();
@@ -22,7 +16,7 @@ class Cluster {
     time_step = 0;
 
     // Create the nodes
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < m_param.num_nodes; i++) {
       // We can't put them right on top of each other
       float x = random(50, width - 100);
       float y = random(50, height - 100);
@@ -30,9 +24,9 @@ class Cluster {
       m_nodes.add(node);
     }
     
-    for( int i=0; i < n; i++) {
+    for( int i=0; i < m_param.num_nodes; i++) {
       Node ni = m_nodes.get(i);
-      for( int j=0; j < n; j++) {
+      for( int j=0; j < m_param.num_nodes; j++) {
         Node nj = m_nodes.get(j);
         attachRepulsionSpring(ni,nj);
       }
@@ -168,13 +162,13 @@ class Cluster {
     for( Node node : m_nodes ) { LA(node); }
     for( Node node : m_nodes ) { GA(node); }
     
-    if( deletion_type == 0 ) {
+    if( m_param.deletion_type == 0 ) {
       for( Node node : m_nodes ) { ND(node); }
     }
-    else if( deletion_type == 1 ) {
+    else if( m_param.deletion_type == 1 ) {
       Aging();
     }
-    else if( deletion_type == 2 ) {
+    else if( m_param.deletion_type == 2 ) {
       LinkDeletion();
     }
     
@@ -185,8 +179,8 @@ class Cluster {
     // Aging
     ArrayList<Link> linksToRemove = new ArrayList<Link>();
     for( Link l : m_links ) {
-      l.Aging(aging);
-      if( l.weight < w_th ) {
+      l.Aging(m_param.aging);
+      if( l.weight < m_param.w_th ) {
         removeLink(l);
         linksToRemove.add(l);
       }
@@ -199,7 +193,7 @@ class Cluster {
   void LinkDeletion() {
     ArrayList<Link> linksToRemove = new ArrayList<Link>();
     for( Link l : m_links ) {
-      if( random(1.0) < p_ld ) {
+      if( random(1.0) < m_param.p_ld ) {
         removeLink(l);
         linksToRemove.add(l);
       }
@@ -225,7 +219,7 @@ class Cluster {
     Node nk = (l_jk.n1.id == nj.id) ? l_jk.n2 : l_jk.n1;
     Link l_ik = ni.getLinkTo(nk);
     if( l_ik == null ) {
-      if( random(1.0) < p_la ) {
+      if( random(1.0) < m_param.p_la ) {
         Link l = addLink(ni, nk);
       }
     }
@@ -235,7 +229,7 @@ class Cluster {
   }
 
   void GA(Node ni) {
-    if( ni.degree() > 0 && random(1.0) > p_ga ) { return; }
+    if( ni.degree() > 0 && random(1.0) > m_param.p_ga ) { return; }
     int j = int(random(m_nodes.size()-1));
     if( j >= ni.id ) { j += 1; }
     Node nj = m_nodes.get(j);
@@ -245,7 +239,7 @@ class Cluster {
   }
   
   void ND(Node ni) {
-    if( random(1.0) > p_nd ) { return; }
+    if( random(1.0) > m_param.p_nd ) { return; }
 
     removeLinksOfNode(ni);
   }
