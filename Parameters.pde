@@ -18,5 +18,9 @@ static class Parameters {
   static float attractive_f = 0.01;
   
   // visualize parameters
-  
+  static color link_colors[] = {#007AB7, #F6CA06, #C7243A};
+  static float link_mid_weight = 40;
+  static float link_stroke_weight = 0.2;
+  static float link_min_weight_to_show = 0.0;
+
 };

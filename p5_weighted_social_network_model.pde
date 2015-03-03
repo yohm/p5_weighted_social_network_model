@@ -57,7 +57,7 @@ void draw() {
     physics.update();
   }
 
-  background(0);
+  background(255);
 
   // Display all points
   if( showingLink >= 0 ) {
