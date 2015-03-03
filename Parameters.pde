@@ -16,4 +16,7 @@ static class Parameters {
   static float repulsive_f = 0.1;
   static float attractive_l = 30.0;
   static float attractive_f = 0.01;
+  
+  // visualize parameters
+  
 };
