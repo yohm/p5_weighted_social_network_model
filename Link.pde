@@ -15,13 +15,11 @@ class Link extends VerletSpring2D {
   }
   
   float calcStrength() {
-    return 0.001 * log(weight+1);
-    // return 0.001 * w;
+    return Parameters.attractive_f * log(weight+1);
   }
 
   float calcRestLength() {
-    // return 100.0 / log(weight+1);
-    return 30.0;
+    return Parameters.attractive_l;
   }
 
   void strengthen(float dw) {
