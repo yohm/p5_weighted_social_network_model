@@ -17,10 +17,14 @@ static class Parameters {
   static float attractive_l = 30.0;
   static float attractive_f = 0.01;
   
-  // visualize parameters
+  // visualize parameters for links
   static color link_colors[] = {#007AB7, #F6CA06, #C7243A};
   static float link_mid_weight = 40;
   static float link_stroke_weight = 0.2;
   static float link_min_weight_to_show = 0.0;
 
+  // visualize parameters for nodes
+  static color node_color = #BBBBBB;
+  static float node_stroke_weight = 1.0;
+  static float node_radius = 2.0;
 };

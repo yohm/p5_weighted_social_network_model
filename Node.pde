@@ -70,10 +70,10 @@ class Node extends VerletParticle2D {
 
   // All we're doing really is adding a display() function to a VerletParticle
   void display() {
-    fill(original_color,150);
-    stroke(original_color);
-    strokeWeight(1);
-    ellipse(x,y,2,2);
+    fill(Parameters.node_color,150);
+    stroke(Parameters.node_color);
+    strokeWeight(Parameters.node_stroke_weight);
+    ellipse(x,y,Parameters.node_radius,Parameters.node_radius);
   }
 }
 
