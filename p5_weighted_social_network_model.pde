@@ -24,6 +24,7 @@ boolean showParticles = true;
 boolean showConnections = true;
 boolean writing = false;
 boolean stopped = false;
+boolean showStatistics = true;
 int showingLink = -1;
 
 // Font
@@ -71,6 +72,14 @@ void draw() {
     writing = false;
   }
 
+  if( showStatistics ) {
+    displayStatistics();
+  }
+
+  // saveFrame("frames/####.tif");
+}
+
+void displayStatistics() {
   // calculate Stylized facts
   if( frameCount % 9 == 0 ) {
     g_averageDegree = cluster.calcAverageDegree();
@@ -81,10 +90,8 @@ void draw() {
   // Print
   fill(255,120,255);
   textFont(f);
-  String time = String.valueOf( cluster.time_step ); // frameCount/3);
+  String time = String.valueOf( cluster.time_step );
   text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC + "\n<w> = " + g_averageWeight,10,20);
-
-  // saveFrame("frames/####.tif");
 }
 
 // Key press commands
@@ -109,6 +116,9 @@ void keyPressed() {
   }
   else if (key == 'w') {
     showingLink = cluster.m_links.size() - 10; 
+  }
+  else if (key == 't') {
+    showStatistics = !showStatistics;
   }
 }
 
