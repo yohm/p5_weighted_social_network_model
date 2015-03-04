@@ -25,6 +25,7 @@ boolean showConnections = true;
 boolean writing = false;
 boolean stopped = false;
 boolean showStatistics = true;
+boolean showColorScale = true;
 int showingLink = -1;
 
 // Font
@@ -76,6 +77,10 @@ void draw() {
     displayStatistics();
   }
 
+  if( showColorScale ) {
+    displayColorScale();
+  }
+
   // saveFrame("frames/####.tif");
 }
 
@@ -90,8 +95,27 @@ void displayStatistics() {
   // Print
   fill(255,120,255);
   textFont(f);
+  textAlign(LEFT,TOP);
   String time = String.valueOf( cluster.time_step );
   text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC + "\n<w> = " + g_averageWeight,10,20);
+}
+
+void displayColorScale() {
+  color c0 = Parameters.link_colors[0];
+  color c1 = Parameters.link_colors[1];
+  color c2 = Parameters.link_colors[2];
+  color colors[] = {c0, lerpColor(c0,c1,0.5), c1, lerpColor(c1,c2,0.5), c2};
+  String keys[] = {"0", "", String.valueOf(Parameters.link_mid_weight), "", String.valueOf(Parameters.link_mid_weight*2)};
+  int x = width-30;
+  int d = 20;
+  int y = 10;
+  int dy = 2;
+  textAlign(RIGHT,TOP);
+  for( int i=0; i<5; i++) {
+    fill(colors[4-i]);
+    rect(x, y+(d+dy)*i, d, d);
+    text(keys[4-i], x, y+(d+dy)*i);
+  }
 }
 
 // Key press commands
@@ -119,6 +143,9 @@ void keyPressed() {
   }
   else if (key == 't') {
     showStatistics = !showStatistics;
+  }
+  else if (key == 'c') {
+    showColorScale = !showColorScale;
   }
 }
 
