@@ -147,5 +147,9 @@ void keyPressed() {
   else if (key == 'c') {
     showColorScale = !showColorScale;
   }
+  else if (key == 'p') {
+    saveFrame("snapshot.tif");
+    println("snapshot is saved");
+  }
 }
 
