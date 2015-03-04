@@ -36,7 +36,7 @@ float g_CC = 0.0;
 float g_averageWeight = 0.0;
 
 void setup() {
-  size(800, 600);
+  size(600, 600);
   f = createFont("Arial", 18, true);
 
   // Initialize the physics
