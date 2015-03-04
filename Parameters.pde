@@ -41,6 +41,9 @@ static class Parameters {
     deletion_type = 2;
     p_ld = 0.0035;
     link_mid_weight = 200.0;
+    
+    attractive_l = 40.0;
+    attractive_f = 0.01;
   }
 };
 
