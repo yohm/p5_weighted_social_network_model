@@ -98,6 +98,7 @@ class Cluster {
 
   // Draw all the internal connections
   void showConnections() {
+    Collections.sort(m_links, new LinkComparator());
     for( Link l: m_links ) {
       l.display();
     }

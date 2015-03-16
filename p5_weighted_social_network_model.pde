@@ -38,7 +38,7 @@ float g_averageWeight = 0.0;
 void setup() {
   size(600, 600);
   f = createFont("Arial", 18, true);
-  // Parameters.setAgingParameter();
+  Parameters.setAgingParameter();
   // Parameters.setLDParameter();
 
   // Initialize the physics
@@ -46,7 +46,7 @@ void setup() {
 
   // Spawn a new random graph
   cluster = new Cluster(width, height);
-  physics.setWorldBounds(new Rect(100,100,width-200,height-200));
+  physics.setWorldBounds(new Rect(30,30,width-30,height-30));
   
 }
 

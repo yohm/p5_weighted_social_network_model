@@ -13,15 +13,15 @@ static class Parameters {
   static float init_weight = 1.0;
 
   // spring parameters
-  static float repulsive_l = 50.0;
+  static float repulsive_l = 55.0;
   static float repulsive_f = 0.1;
-  static float attractive_l = 30.0;
+  static float attractive_l = 44.0;
   static float attractive_f = 0.02;
   
   // visualize parameters for links
-  static color link_colors[] = {#CBE6F3, #B2CF3E, #DA5019};
+  static color link_colors[] = {#97D3E3, #9D73BB, #DA5019};
   static float link_mid_weight = 300;
-  static float link_stroke_weight = 0.2;
+  static float link_stroke_weight = 0.5;
   static float link_min_weight_to_show = 0.0;
 
   // visualize parameters for nodes
@@ -43,7 +43,7 @@ static class Parameters {
     p_ld = 0.0035;
     link_mid_weight = 200.0;
     
-    attractive_l = 40.0;
+    attractive_l = 44.0;
     attractive_f = 0.01;
   }
 };
