@@ -31,10 +31,11 @@ static class Parameters {
   
   static void setAgingParameter() {
     deletion_type = 1;
-    p_ga = 0.001;
-    aging = 0.98;
+    p_la = 0.05;
+    p_ga = 0.005;
+    aging = 0.9;
     
-    link_mid_weight = 30;
+    link_mid_weight = 7.5;
   }
   
   static void setLDParameter() {

@@ -39,7 +39,7 @@ void setup() {
   size(600, 600);
   f = createFont("Arial", 18, true);
   // Parameters.setAgingParameter();
-  Parameters.setLDParameter();
+  // Parameters.setLDParameter();
 
   // Initialize the physics
   physics=new VerletPhysics2D();
