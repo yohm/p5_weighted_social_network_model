@@ -3,11 +3,10 @@ import java.util.Collections;
 class LinkComparator implements java.util.Comparator {
   public int compare( Object l1, Object l2 ) {
     float l1w = ((Link)l1).weight;
-    float l2w = ((Link)l1).weight;
+    float l2w = ((Link)l2).weight;
     if( l1w == l2w ) { return 0; }
     else if( l1w > l2w ) { return 1; }
     else { return -1; }
-    // return (((Link) l1).weight - ((Link) l2).weight) > 0 ? 1 : -1;
   } 
 } 
 
