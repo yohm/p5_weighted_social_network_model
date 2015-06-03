@@ -21,7 +21,7 @@ static class Parameters {
   // visualize parameters for links
   static color link_colors[] = {#97D3E3, #9D73BB, #DA5019};
   static float link_mid_weight = 300;
-  static float link_stroke_weight = 0.5;
+  static float link_stroke_weight = 0.2;
   static float link_min_weight_to_show = 0.0;
 
   // visualize parameters for nodes
@@ -36,6 +36,7 @@ static class Parameters {
     aging = 0.9;
     
     link_mid_weight = 7.5;
+    link_stroke_weight = 0.5;
   }
   
   static void setLDParameter() {

@@ -38,7 +38,7 @@ float g_averageWeight = 0.0;
 void setup() {
   size(600, 600);
   f = createFont("Arial", 18, true);
-  Parameters.setAgingParameter();
+  // Parameters.setAgingParameter();
   // Parameters.setLDParameter();
 
   // Initialize the physics
@@ -113,6 +113,7 @@ void displayColorScale() {
   int y = 10;
   int dy = 2;
   textAlign(RIGHT,TOP);
+  noStroke();
   for( int i=0; i<5; i++) {
     fill(colors[4-i]);
     rect(x, y+(d+dy)*i, d, d);
