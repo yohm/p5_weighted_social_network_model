@@ -36,7 +36,7 @@ float g_CC = 0.0;
 float g_averageWeight = 0.0;
 
 void setup() {
-  size(600, 600);
+  size(1280, 720);
   f = createFont("Arial", 18, true);
   // Parameters.setAgingParameter();
   // Parameters.setLDParameter();
@@ -51,16 +51,16 @@ void setup() {
 }
 
 void draw() {
-  for( int f=0; f < 10; f++) {
+  for( int f=0; f < 3; f++) {
     if(!stopped) {
-      for( int i=0; i < 2; i++ ) {
+      for( int i=0; i < 1; i++ ) {
         cluster.updateNetwork();
       }
     }
     physics.update();
   }
 
-  background(255);
+  background(Parameters.background_c);
 
   // Display all points
   if( showingLink >= 0 ) {

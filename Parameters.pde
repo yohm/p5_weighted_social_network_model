@@ -19,9 +19,10 @@ static class Parameters {
   static float attractive_f = 0.02;
   
   // visualize parameters for links
-  static color link_colors[] = {#97D3E3, #9D73BB, #DA5019};
+  static color background_c = #000000;
+  static color link_colors[] = {#CBE6F3, #FFF280, #E06A3B};
   static float link_mid_weight = 300;
-  static float link_stroke_weight = 0.2;
+  static float link_stroke_weight = 0.25;
   static float link_min_weight_to_show = 0.0;
 
   // visualize parameters for nodes
