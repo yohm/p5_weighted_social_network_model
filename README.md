@@ -9,15 +9,11 @@ You'll see how community structures are developed.
 
 - First of all, you need [processing](http://processing.org/).
 - The code depends on [toxiclibs](http://toxiclibs.org/).
-  - Download toxiclibs from the website, and copy to the library directory for processing.
-    - For Mac, put the library to `~/Documents/Processing/libraries`.
+    - From the menu of Processing, [Sketch]-[Import library]-[Add library]. Search for toxiclibs and install it.
 - Open `weighted_social_network_model.pde` in processing, and run it.
 
 ## License
 
-All of the source code is licensed under the GNU Lesser General Public License.
-http://www.gnu.org/licenses/lgpl-2.1.html
-
-This code is developing based on Shiffman's code. I thank him for making such interesting examples.
-His original code is on [github](https://github.com/shiffman/The-Nature-of-Code-Examples).
+All of the source code is licensed under the MIT license.
+(c) Yohsuke Murase 2017
 
