@@ -16,8 +16,7 @@ import toxi.physics2d.behaviors.*;
 // Reference to physics world
 VerletPhysics2D physics;
 
-// A list of cluster objects
-Cluster cluster;
+Network net;
 
 // Boolean that indicates whether we draw connections or not
 boolean showParticles = true;
@@ -45,7 +44,7 @@ void setup() {
   physics=new VerletPhysics2D();
 
   // Spawn a new random graph
-  cluster = new Cluster(width, height);
+  net = new Network(width, height);
   physics.setWorldBounds(new Rect(30,30,width-30,height-30));
   
 }
@@ -54,24 +53,23 @@ void draw() {
   for( int f=0; f < 3; f++) {
     if(!stopped) {
       for( int i=0; i < 1; i++ ) {
-        cluster.updateNetwork();
+        net.updateNetwork();
       }
     }
     physics.update();
   }
-
   background(Parameters.background_c);
 
   // Display all points
   if( showingLink >= 0 ) {
-    cluster.showOne(showingLink);
+    net.showOne(showingLink);
   } else {
-    cluster.showAll();
+    net.showAll();
   }
   
   if( writing ) {
     PrintWriter writer = createWriter("net_proc.edg");
-    cluster.Print(writer);
+    net.Print(writer);
     writing = false;
   }
 
@@ -89,16 +87,16 @@ void draw() {
 void displayStatistics() {
   // calculate Stylized facts
   if( frameCount % 9 == 0 ) {
-    g_averageDegree = cluster.calcAverageDegree();
-    g_CC = cluster.calcCC();
-    g_averageWeight = cluster.calcAverageWeight();
+    g_averageDegree = net.calcAverageDegree();
+    g_CC = net.calcCC();
+    g_averageWeight = net.calcAverageWeight();
   }
 
   // Print
   fill(255,120,255);
   textFont(f);
   textAlign(LEFT,TOP);
-  String time = String.valueOf( cluster.time_step );
+  String time = String.valueOf( net.time_step );
   text("t = " + time + "\n<k> = " + g_averageDegree + "\nCC = " + g_CC + "\n<w> = " + g_averageWeight,10,20);
 }
 
@@ -131,7 +129,7 @@ void keyPressed() {
   }
   else if( key == 'j') {
     showingLink++;
-    if( showingLink >= cluster.m_links.size() ) {
+    if( showingLink >= net.m_links.size() ) {
       showingLink = 0;
     }
   }
@@ -142,7 +140,7 @@ void keyPressed() {
     showingLink = -showingLink;
   }
   else if (key == 'w') {
-    showingLink = cluster.m_links.size() - 10; 
+    showingLink = net.m_links.size() - 10; 
   }
   else if (key == 't') {
     showStatistics = !showStatistics;
@@ -155,4 +153,3 @@ void keyPressed() {
     println("snapshot is saved");
   }
 }
-

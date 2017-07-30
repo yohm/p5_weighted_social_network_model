@@ -1,4 +1,4 @@
-class Cluster {
+class Network {
 
   // A cluster is a grouping of nodes
   ArrayList<Node> m_nodes;
@@ -6,7 +6,7 @@ class Cluster {
   int time_step;
 
   // We initialize a Cluster with a number of nodes, a diameter, and centerpoint
-  Cluster(float width, float height) {
+  Network(float width, float height) {
     // Initialize the ArrayList
     m_nodes = new ArrayList<Node>();
     m_links = new ArrayList<Link>();
@@ -275,4 +275,3 @@ class Cluster {
     return sum / m_links.size();
   }
 }
-
