@@ -14,6 +14,8 @@ You'll see how community structures are developed.
 
 ## License
 
-All of the source code is licensed under the MIT license.
-(c) Yohsuke Murase 2017
+All of the source code is licensed under the GNU Lesser General Public License.
+http://www.gnu.org/licenses/lgpl-2.1.html
+This code is developing based on Shiffman's code.
+His original code is on [github](https://github.com/shiffman/The-Nature-of-Code-Examples).
 

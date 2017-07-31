@@ -114,7 +114,6 @@ class Network {
     VerletSpring2D s = physics.getSpring(ni,nj);
     if( s != null ) { physics.removeSpring(s); }
 
-    float init_weight = 1.0;
     Link l = new Link(ni, nj);
     m_links.add(l);
     physics.addSpring(l);

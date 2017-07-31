@@ -54,7 +54,6 @@ class Node extends VerletParticle2D {
       w_sum += m_edges.get(nid).weight;
     }
     float r = random(w_sum);
-    float org_r = r;
     Link ret = null;
     for( int nid : m_edges.keySet() ) {
       // if( node != null && nid == node.id ) { continue; }
@@ -79,4 +78,3 @@ class Node extends VerletParticle2D {
     ellipse(x,y,Parameters.node_radius,Parameters.node_radius);
   }
 }
-
